@@ -10,8 +10,8 @@ export class GateDomainEntity implements IGateDomainEntity {
   emergency?: boolean | EmergencyValueObject | undefined;
   stateGate?: boolean | StateGateValueObject | undefined;
   emergencyDate?: number | Date | EmergencyDateValueObject | undefined;
-  openGate: IOpenGateDomainEntity;
-  closeGate: ICloseGateDomainEntity;
+  openGate?: IOpenGateDomainEntity[];
+  closeGate?: ICloseGateDomainEntity[];
   gateId: string | GateIdValueObject;
 
   constructor(data?: IGateDomainEntity) {

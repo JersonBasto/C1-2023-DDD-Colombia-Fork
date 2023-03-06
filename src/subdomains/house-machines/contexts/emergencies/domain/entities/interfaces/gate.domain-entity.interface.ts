@@ -9,7 +9,7 @@ export interface IGateDomainEntity {
   emergency?: boolean | EmergencyValueObject;
   stateGate?: boolean | StateGateValueObject;
   emergencyDate?: Date | number | EmergencyDateValueObject;
-  openGate: IOpenGateDomainEntity;
-  closeGate: ICloseGateDomainEntity;
-  gateId: string | GateIdValueObject;
+  openGate?: IOpenGateDomainEntity[];
+  closeGate?: ICloseGateDomainEntity[];
+  gateId?: string | GateIdValueObject;
 }
