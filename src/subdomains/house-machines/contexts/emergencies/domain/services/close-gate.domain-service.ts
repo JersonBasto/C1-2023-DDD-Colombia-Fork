@@ -5,4 +5,5 @@ export interface ICloseGateDomainService<
 > {
   registerCloseAction(data: ICloseGateDomainEntity): Promise<Entity>;
   getHistoryCloseAction(): Promise<Entity[]>;
+  getCloseGateById(value: string): Promise<Entity>;
 }
