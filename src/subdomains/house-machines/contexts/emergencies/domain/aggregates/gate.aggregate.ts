@@ -16,9 +16,19 @@ import { GotOpenGateByIdEventPublisher } from '../events/publishers/got-open-gat
 import { OpenedGateEventPublisher } from '../events/publishers/opened-gate.event-publisher';
 import { RegisteredCloseActionEventPublisher } from '../events/publishers/registered-close-action.event-publisher';
 import { RegisteredOpenedActionEventPublisher } from '../events/publishers/registered-open-action.event-publisher';
-import { CloseGateHelper } from './helpers';
+import {
+  CloseGateHelper,
+  GetCloseGateByIdHelper,
+  GetGateByIdHelper,
+  GetHistoryCloseActionHelper,
+  GetHistoryOpenActionHelper,
+  GetOpenGateByIdHelper,
+  RegisterCloseActionHelper,
+  RegisterOpenActionHelper,
+} from './helpers';
 import { ChangeStateGateHelper } from './helpers/change-state-gate/change-state-gate.helper';
 import { ChangeStateEmergencyHelper } from './helpers/change-state-emergency/change-state-emergency.helper';
+import { CloseGateDomainEntity, OpenGateDomainEntity } from '../entities';
 
 export class GateAggregateRoot
   implements
@@ -109,29 +119,51 @@ export class GateAggregateRoot
       this.changedStateEmergencyEvent,
     );
   }
-  getGateById(value: string): Promise<GateDomainEntity> {
-    throw new Error('Method not implemented.');
+  getGateById(gateId: string): Promise<GateDomainEntity> {
+    return GetGateByIdHelper(gateId, this.gateService, this.gotGateByIdEvent);
   }
   registerOpenAction(
-    data: IOpenGateDomainEntity,
-  ): Promise<IOpenGateDomainEntity> {
-    throw new Error('Method not implemented.');
+    data: OpenGateDomainEntity,
+  ): Promise<OpenGateDomainEntity> {
+    return RegisterOpenActionHelper(
+      data,
+      this.openGateService,
+      this.registeredOpenActionEvent,
+    );
   }
-  getHistoryOpenAction(): Promise<IOpenGateDomainEntity[]> {
-    throw new Error('Method not implemented.');
+  getHistoryOpenAction(): Promise<OpenGateDomainEntity[]> {
+    return GetHistoryOpenActionHelper(
+      this.openGateService,
+      this.gotHistoryOpenActionEvent,
+    );
   }
-  getOpenGateById(value: string): Promise<IOpenGateDomainEntity> {
-    throw new Error('Method not implemented.');
+  getOpenGateById(gateId: string): Promise<OpenGateDomainEntity> {
+    return GetOpenGateByIdHelper(
+      gateId,
+      this.openGateService,
+      this.gotOpenGateByIdEvent,
+    );
   }
   registerCloseAction(
-    data: ICloseGateDomainEntity,
-  ): Promise<ICloseGateDomainEntity> {
-    throw new Error('Method not implemented.');
+    data: CloseGateDomainEntity,
+  ): Promise<CloseGateDomainEntity> {
+    return RegisterCloseActionHelper(
+      data,
+      this.closeGateService,
+      this.registeredCloseActionEvent,
+    );
   }
-  getHistoryCloseAction(): Promise<ICloseGateDomainEntity[]> {
-    throw new Error('Method not implemented.');
+  getHistoryCloseAction(): Promise<CloseGateDomainEntity[]> {
+    return GetHistoryCloseActionHelper(
+      this.closeGateService,
+      this.gotHistoryCloseActionEvent,
+    );
   }
-  getCloseGateById(value: string): Promise<ICloseGateDomainEntity> {
-    throw new Error('Method not implemented.');
+  getCloseGateById(gateId: string): Promise<CloseGateDomainEntity> {
+    return GetCloseGateByIdHelper(
+      gateId,
+      this.closeGateService,
+      this.gotCloseGateByIdEvent,
+    );
   }
 }

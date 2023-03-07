@@ -1,9 +1,9 @@
-import { ICloseGateDomainEntity } from '../entities/interfaces/close-gate.domain-entity.interface';
+import { CloseGateDomainEntity } from '../entities';
 
 export interface ICloseGateDomainService<
-  Entity extends ICloseGateDomainEntity = ICloseGateDomainEntity,
+  Entity extends CloseGateDomainEntity = CloseGateDomainEntity,
 > {
-  registerCloseAction(data: ICloseGateDomainEntity): Promise<Entity>;
+  registerCloseAction(data: CloseGateDomainEntity): Promise<Entity>;
   getHistoryCloseAction(): Promise<Entity[]>;
   getCloseGateById(value: string): Promise<Entity>;
 }

@@ -1,9 +1,9 @@
-import { IOpenGateDomainEntity } from '../entities/interfaces/open-gate.domain-entity.interface';
+import { OpenGateDomainEntity } from '../entities/open-gate.domain-entity';
 
 export interface IOpenGateDomainService<
-  Entity extends IOpenGateDomainEntity = IOpenGateDomainEntity,
+  Entity extends OpenGateDomainEntity = OpenGateDomainEntity,
 > {
-  registerOpenAction(data: IOpenGateDomainEntity): Promise<Entity>;
+  registerOpenAction(data: OpenGateDomainEntity): Promise<Entity>;
   getHistoryOpenAction(): Promise<Entity[]>;
   getOpenGateById(value: string): Promise<Entity>;
 }
