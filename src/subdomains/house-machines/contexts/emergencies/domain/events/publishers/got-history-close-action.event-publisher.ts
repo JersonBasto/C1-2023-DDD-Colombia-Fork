@@ -5,7 +5,7 @@ export abstract class GotHistoryCloseActionEventPublisher<
   Response = CloseGateDomainEntity,
 > extends EventPublisherBase<Response> {
   publish<Result = any>(): Promise<Result> {
-    return this.send(
+    return this.emit(
       'emergencies.gotHistoryCloseAction',
       JSON.stringify(this.response),
     );
