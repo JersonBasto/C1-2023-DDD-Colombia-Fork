@@ -1,34 +1,39 @@
-import { GateDomainEntity } from '../entities/gate.domain-entity';
-import { IOpenGateDomainEntity } from '../entities/interfaces/open-gate.domain-entity.interface';
-import { ICloseGateDomainEntity } from '../entities/interfaces/close-gate.domain-entity.interface';
-import { ICloseGateDomainService } from '../services/close-gate.domain-service';
-import { IGateDomainService } from '../services/gate.domain-service';
-import { IOpenGateDomainService } from '../services/open-gate.domain-service';
-import { OpenGateHelper } from './helpers/open-gate/open-gate.helper';
-import { ChangedStateEmergencyEventPusblisher } from '../events/publishers/changed-state-emergency.event-publisher';
-import { ChangedStateGateEventPublisher } from '../events/publishers/changed-state-gate.event-publisher';
-import { ClosedGateEventPublisher } from '../events/publishers/closed-gate.event-publisher';
-import { GotCloseGateByIdEventPublisher } from '../events/publishers/got-close-gate-by-id.event-publisher';
-import { GotGateByIdEventPublisher } from '../events/publishers/got-gate-by-id.event-publisher';
-import { GotHistoryCloseActionEventPublisher } from '../events/publishers/got-history-close-action.event-publisher';
-import { GotHistoryOpenActionEventPublisher } from '../events/publishers/got-history-open-action.event-publisher';
-import { GotOpenGateByIdEventPublisher } from '../events/publishers/got-open-gate-by-id.event-publisher';
-import { OpenedGateEventPublisher } from '../events/publishers/opened-gate.event-publisher';
-import { RegisteredCloseActionEventPublisher } from '../events/publishers/registered-close-action.event-publisher';
-import { RegisteredOpenedActionEventPublisher } from '../events/publishers/registered-open-action.event-publisher';
 import {
+  CloseGateDomainEntity,
+  GateDomainEntity,
+  OpenGateDomainEntity,
+} from '../entities';
+import {
+  ChangedStateEmergencyEventPusblisher,
+  ChangedStateGateEventPublisher,
+  ClosedGateEventPublisher,
+  GotCloseGateByIdEventPublisher,
+  GotGateByIdEventPublisher,
+  GotHistoryCloseActionEventPublisher,
+  GotHistoryOpenActionEventPublisher,
+  GotOpenGateByIdEventPublisher,
+  OpenedGateEventPublisher,
+  RegisteredCloseActionEventPublisher,
+  RegisteredOpenedActionEventPublisher,
+} from '../events/publishers';
+import {
+  ICloseGateDomainService,
+  IGateDomainService,
+  IOpenGateDomainService,
+} from '../services';
+import {
+  ChangeStateEmergencyHelper,
+  ChangeStateGateHelper,
   CloseGateHelper,
   GetCloseGateByIdHelper,
   GetGateByIdHelper,
   GetHistoryCloseActionHelper,
   GetHistoryOpenActionHelper,
   GetOpenGateByIdHelper,
+  OpenGateHelper,
   RegisterCloseActionHelper,
   RegisterOpenActionHelper,
 } from './helpers';
-import { ChangeStateGateHelper } from './helpers/change-state-gate/change-state-gate.helper';
-import { ChangeStateEmergencyHelper } from './helpers/change-state-emergency/change-state-emergency.helper';
-import { CloseGateDomainEntity, OpenGateDomainEntity } from '../entities';
 
 export class GateAggregateRoot
   implements
