@@ -5,7 +5,7 @@ export abstract class GotCloseGateByIdEventPublisher<
   Response = CloseGateDomainEntity,
 > extends EventPublisherBase<Response> {
   publish<Result = any>(): Promise<Result> {
-    return this.send(
+    return this.emit(
       'emergencies.gotCloseGateById',
       JSON.stringify(this.response),
     );

@@ -5,6 +5,6 @@ export abstract class GotGateByIdEventPublisher<
   Response = GateDomainEntity,
 > extends EventPublisherBase<Response> {
   publish<Result = any>(): Promise<Result> {
-    return this.send('emergencies.gotGateById', JSON.stringify(this.response));
+    return this.emit('emergencies.gotGateById', JSON.stringify(this.response));
   }
 }

@@ -5,7 +5,7 @@ export abstract class GotHistoryOpenActionEventPublisher<
   Response = OpenGateDomainEntity,
 > extends EventPublisherBase<Response> {
   publish<Result = any>(): Promise<Result> {
-    return this.send(
+    return this.emit(
       'emergencies.gotHistoryOpenAction',
       JSON.stringify(this.response),
     );
