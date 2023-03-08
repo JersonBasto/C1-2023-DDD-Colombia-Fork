@@ -109,7 +109,7 @@ export class GateAggregateRoot
   closeGates(gateId: string): Promise<GateDomainEntity> {
     return CloseGateHelper(gateId, this.gateService, this.closedGateEvent);
   }
-  changeStateGate(gateId: string, value: boolean): Promise<GateDomainEntity> {
+  changeStateGate(gateId: string, value: boolean): Promise<boolean> {
     return ChangeStateGateHelper(
       value,
       gateId,
@@ -117,7 +117,7 @@ export class GateAggregateRoot
       this.changedStateGateEvent,
     );
   }
-  changeStateEmergency(value: boolean): Promise<GateDomainEntity> {
+  changeStateEmergency(value: boolean): Promise<boolean> {
     return ChangeStateEmergencyHelper(
       value,
       this.gateService,

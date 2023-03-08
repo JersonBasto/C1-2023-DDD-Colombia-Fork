@@ -5,7 +5,7 @@ export interface IGateDomainService<
 > {
   openGates(gateId: string): Promise<Entity>;
   closeGates(gateId: string): Promise<Entity>;
-  changeStateGate(gateId: string, value: boolean): Promise<Entity>;
-  changeStateEmergency(value: boolean): Promise<Entity>;
+  changeStateGate(gateId: string, value: boolean): Promise<boolean>;
+  changeStateEmergency(value: boolean): Promise<boolean>;
   getGateById(value: string): Promise<Entity>;
 }

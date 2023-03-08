@@ -2,7 +2,7 @@ import { EventPublisherBase } from 'src/shared/sofka/event-publisher.base';
 import { GateDomainEntity } from '../../entities/gate.domain-entity';
 
 export abstract class ChangedStateGateEventPublisher<
-  Response = GateDomainEntity,
+  Response = boolean,
 > extends EventPublisherBase<Response> {
   publish<Result = any>(): Promise<Result> {
     return this.emit(
