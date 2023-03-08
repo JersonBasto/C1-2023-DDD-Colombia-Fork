@@ -2,7 +2,7 @@ import { IErrorValueObject, ValueObjectBase } from 'src/shared/sofka';
 import { IsDateNow } from 'src/shared/validations/is-date-now.validation';
 
 export class OpenGateDateValueObject extends ValueObjectBase<Date | number> {
-  constructor(value: Date | number) {
+  constructor(value: Date | number | undefined) {
     super(value);
   }
   validateData(): void {
