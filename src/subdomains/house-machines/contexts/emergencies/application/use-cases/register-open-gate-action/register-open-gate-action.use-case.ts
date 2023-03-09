@@ -9,6 +9,7 @@ import {
   GateIdValueObject,
   IOpenGateDomainService,
   OpenGateDateValueObject,
+  OpenGateDomainEntity,
   OpenGateIdValueObject,
   RegisteredOpenedActionEventPublisher,
 } from '../../../domain';
@@ -31,7 +32,7 @@ export class RegisterOpenGateActionUseCase
       registeredOpenActionEvent,
     });
   }
-  execute(
+  async execute(
     command?: IRegisterOpenActionCommand | undefined,
   ): Promise<IRegisteredOpenACtionResponse> {
     //Validaciones
@@ -44,11 +45,21 @@ export class RegisterOpenGateActionUseCase
     if (openDate.hasErrors() === true) this.setErrors(openDate.getErrors());
     if (gate.hasErrors() === true) this.setErrors(gate.getErrors());
 
+    //Validar Errores
     if (this.hasErrors() === true) {
       throw new ValueObjectException(
         'Hay fallos en las validaciones',
         this.getErrors(),
       );
     }
+
+    //Create Entity
+    const entity = new OpenGateDomainEntity();
+    entity.gate = gate.valueOf();
+    entity.openGateId = openGateId.valueOf();
+    entity.openDate = openDate.valueOf();
+
+    const result = await this.openGateService.registerOpenAction(entity);
+    return { state: true, message: 'Se registrado la accion', data: result };
   }
 }
