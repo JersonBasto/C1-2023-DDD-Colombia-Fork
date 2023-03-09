@@ -1,6 +1,13 @@
 import { IErrorValueObject, ValueObjectBase } from 'src/shared/sofka';
 import { IsDateNow } from 'src/shared/validations/is-date-now.validation';
 
+/**
+ * Se crea la validacion para la fecha del closeGate
+ *
+ * @export La clase CloseGateDateValueObject
+ * @class CloseGateDateValueObject
+ * @extends {(ValueObjectBase<Date | number>)}
+ */
 export class CloseGateDateValueObject extends ValueObjectBase<Date | number> {
   constructor(value: Date | number) {
     super(value);
