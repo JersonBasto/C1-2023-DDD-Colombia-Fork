@@ -2,6 +2,15 @@ import { AggregateRootException } from 'src/shared/sofka';
 import { ClosedGateEventPublisher } from '../../../events';
 import { IGateDomainService } from '../../../services';
 
+/**
+ *
+ * Es el Helper que contiene la logica de cerrar puertas
+ *
+ * @param gateId Id de Gate
+ * @param gateService Servicio de Gate
+ * @param closedGateEvent Evento publicar cuando se cierra la Gate
+ * @returns answer
+ */
 export const CloseGateHelper = async (
   gateId: string,
   gateService: IGateDomainService | undefined,

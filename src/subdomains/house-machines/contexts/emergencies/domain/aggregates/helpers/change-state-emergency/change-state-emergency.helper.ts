@@ -2,6 +2,16 @@ import { AggregateRootException } from 'src/shared/sofka/exceptions/aggregate-ro
 import { ChangedStateEmergencyEventPusblisher } from '../../../events';
 import { IGateDomainService } from '../../../services';
 
+/**
+ *
+ * Este es el helper encargado de la logica para cambiar el estado
+ * de emergencia.
+ *
+ * @param value Boolean
+ * @param gateService El servicio de Gate
+ * @param changedStateEmergencyEvent Evento publicador del cambio de estado de emergencia
+ * @returns answer
+ */
 export const ChangeStateEmergencyHelper = async (
   value: boolean,
   gateService: IGateDomainService | undefined,

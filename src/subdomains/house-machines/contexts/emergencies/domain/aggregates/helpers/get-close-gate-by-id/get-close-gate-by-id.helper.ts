@@ -2,6 +2,13 @@ import { AggregateRootException } from 'src/shared/sofka';
 import { GotCloseGateByIdEventPublisher } from '../../../events';
 import { ICloseGateDomainService } from '../../../services';
 
+/**
+ *
+ * @param gateId Id de la Gate
+ * @param closeGateService Servicio de CloseGate
+ * @param gotCloseGateByIdEvent Evento publicador de obtener el item CloseGate a traves del Id
+ * @returns answer
+ */
 export const GetCloseGateByIdHelper = async (
   gateId: string,
   closeGateService: ICloseGateDomainService | undefined,
