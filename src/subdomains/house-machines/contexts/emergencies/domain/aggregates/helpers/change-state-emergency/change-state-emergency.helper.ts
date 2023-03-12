@@ -16,7 +16,7 @@ export const ChangeStateEmergencyHelper = async (
   value: boolean,
   gateService?: IGateDomainService,
   changedStateEmergencyEvent?: ChangedStateEmergencyEventPusblisher,
-) => {
+): Promise<boolean> => {
   if (!gateService) {
     throw new AggregateRootException('El evento gateService no está definido');
   }

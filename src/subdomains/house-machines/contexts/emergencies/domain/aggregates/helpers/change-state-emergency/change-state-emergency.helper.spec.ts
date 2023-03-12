@@ -6,17 +6,17 @@ describe('changeStateEmergencyHelper', () => {
   let value: boolean;
   let gateService: IGateDomainService;
   let changedStateEmergencyEvent: ChangedStateEmergencyEventPusblisher;
-  let helper: ChangeStateEmergencyHelper;
+  let helper: any;
   beforeEach(() => {
     (value = true), (gateService = {} as IGateDomainService);
     changedStateEmergencyEvent = {} as ChangedStateEmergencyEventPusblisher;
-    helper = new ChangeStateEmergencyHelper(
+    helper = ChangeStateEmergencyHelper(
       value,
       gateService,
       changedStateEmergencyEvent,
     );
   });
   it('Should be defined', () => {
-    expect(helper);
+    expect(helper).toBeDefined();
   });
 });
