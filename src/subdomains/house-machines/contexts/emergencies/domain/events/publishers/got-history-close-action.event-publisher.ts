@@ -1,5 +1,6 @@
 import { EventPublisherBase } from 'src/shared/sofka/event-publisher.base';
 import { CloseGateDomainEntity } from '../../entities/close-gate.domain-entity';
+import { Topic } from '../enum/topic.enum';
 
 /**
  * se crea el evento publicador, encargado de emitir la accion de
@@ -16,7 +17,7 @@ export abstract class GotHistoryCloseActionEventPublisher<
 > extends EventPublisherBase<Response> {
   publish<Result = any>(): Promise<Result> {
     return this.emit(
-      'emergencies.gotHistoryCloseAction',
+      Topic.EmergenciesGotHistoryCloseAction,
       JSON.stringify(this.response),
     );
   }

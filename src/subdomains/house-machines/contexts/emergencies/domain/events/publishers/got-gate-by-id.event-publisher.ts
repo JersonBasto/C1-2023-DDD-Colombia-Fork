@@ -1,5 +1,6 @@
 import { EventPublisherBase } from 'src/shared/sofka/event-publisher.base';
 import { GateDomainEntity } from '../../entities/gate.domain-entity';
+import { Topic } from '../enum/topic.enum';
 
 /**
  * Se crea el evento publicador, encargado de emitir la accion de
@@ -15,6 +16,9 @@ export abstract class GotGateByIdEventPublisher<
   Response = GateDomainEntity,
 > extends EventPublisherBase<Response> {
   publish<Result = any>(): Promise<Result> {
-    return this.emit('emergencies.gotGateById', JSON.stringify(this.response));
+    return this.emit(
+      Topic.EmergenciesGotGotGateById,
+      JSON.stringify(this.response),
+    );
   }
 }

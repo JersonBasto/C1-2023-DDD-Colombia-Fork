@@ -1,5 +1,5 @@
 import { EventPublisherBase } from 'src/shared/sofka/event-publisher.base';
-import { GateDomainEntity } from '../../entities/gate.domain-entity';
+import { Topic } from '../enum/topic.enum';
 
 /**
  * Se crea el evento publicador, encargado de emitir la accion de que
@@ -16,7 +16,7 @@ export abstract class ChangedStateEmergencyEventPusblisher<
 > extends EventPublisherBase<Response> {
   publish<Result = any>(): Promise<Result> {
     return this.emit(
-      'emergencies.changedStateEmergency',
+      Topic.EmergenciesChangedStateEmergency,
       JSON.stringify(this.response),
     );
   }

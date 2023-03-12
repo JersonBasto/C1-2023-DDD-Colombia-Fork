@@ -14,8 +14,8 @@ import { IGateDomainService } from '../../../services';
  */
 export const ChangeStateEmergencyHelper = async (
   value: boolean,
-  gateService: IGateDomainService | undefined,
-  changedStateEmergencyEvent: ChangedStateEmergencyEventPusblisher | undefined,
+  gateService?: IGateDomainService,
+  changedStateEmergencyEvent?: ChangedStateEmergencyEventPusblisher,
 ) => {
   if (!gateService) {
     throw new AggregateRootException('El evento gateService no está definido');

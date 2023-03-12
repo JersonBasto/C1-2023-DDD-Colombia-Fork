@@ -1,5 +1,6 @@
 import { EventPublisherBase } from 'src/shared/sofka/event-publisher.base';
 import { OpenGateDomainEntity } from '../../entities/open-gate.domain-entity';
+import { Topic } from '../enum/topic.enum';
 
 /**
  * Se crea en evento publicador, encargado de emitir la accion de
@@ -16,7 +17,7 @@ export abstract class RegisteredOpenedActionEventPublisher<
 > extends EventPublisherBase<Response> {
   publish<Result = any>(): Promise<Result> {
     return this.emit(
-      'emergencies.registeredOpenedAction',
+      Topic.EmergenciesRegisteredOpenAction,
       JSON.stringify(this.response),
     );
   }

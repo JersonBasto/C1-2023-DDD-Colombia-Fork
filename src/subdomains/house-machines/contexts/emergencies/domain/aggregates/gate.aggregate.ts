@@ -1,21 +1,10 @@
+import { EventPublisherBase } from 'src/shared/sofka/event-publisher.base';
 import {
   CloseGateDomainEntity,
   GateDomainEntity,
   OpenGateDomainEntity,
 } from '../entities';
-import {
-  ChangedStateEmergencyEventPusblisher,
-  ChangedStateGateEventPublisher,
-  ClosedGateEventPublisher,
-  GotCloseGateByIdEventPublisher,
-  GotGateByIdEventPublisher,
-  GotHistoryCloseActionEventPublisher,
-  GotHistoryOpenActionEventPublisher,
-  GotOpenGateByIdEventPublisher,
-  OpenedGateEventPublisher,
-  RegisteredCloseActionEventPublisher,
-  RegisteredOpenedActionEventPublisher,
-} from '../events/publishers';
+import { Topic } from '../events';
 import {
   ICloseGateDomainService,
   IGateDomainService,
@@ -44,88 +33,60 @@ export class GateAggregateRoot
   private readonly gateService?: IGateDomainService;
   private readonly openGateService?: IOpenGateDomainService;
   private readonly closeGateService?: ICloseGateDomainService;
-  private readonly changedStateEmergencyEvent?: ChangedStateEmergencyEventPusblisher;
-  private readonly changedStateGateEvent?: ChangedStateGateEventPublisher;
-  private readonly closedGateEvent?: ClosedGateEventPublisher;
-  private readonly gotCloseGateByIdEvent?: GotCloseGateByIdEventPublisher;
-  private readonly gotGateByIdEvent?: GotGateByIdEventPublisher;
-  private readonly gotHistoryCloseActionEvent?: GotHistoryCloseActionEventPublisher;
-  private readonly gotHistoryOpenActionEvent?: GotHistoryOpenActionEventPublisher;
-  private readonly gotOpenGateByIdEvent?: GotOpenGateByIdEventPublisher;
-  private readonly openedGateEvent?: OpenedGateEventPublisher;
-  private readonly registeredCloseActionEvent?: RegisteredCloseActionEventPublisher;
-  private readonly registeredOpenActionEvent?: RegisteredOpenedActionEventPublisher;
+  private readonly events?: Map<Topic, EventPublisherBase<any>>;
 
   constructor({
     gateService,
     openGateService,
     closeGateService,
-    changedStateEmergencyEvent,
-    changedStateGateEvent,
-    closedGateEvent,
-    gotCloseGateByIdEvent,
-    gotGateByIdEvent,
-    gotHistoryCloseActionEvent,
-    gotHistoryOpenActionEvent,
-    gotOpenGateByIdEvent,
-    openedGateEvent,
-    registeredCloseActionEvent,
-    registeredOpenActionEvent,
+    events,
   }: {
     gateService?: IGateDomainService;
     openGateService?: IOpenGateDomainService;
     closeGateService?: ICloseGateDomainService;
-    changedStateEmergencyEvent?: ChangedStateEmergencyEventPusblisher;
-    changedStateGateEvent?: ChangedStateGateEventPublisher;
-    closedGateEvent?: ClosedGateEventPublisher;
-    gotCloseGateByIdEvent?: GotCloseGateByIdEventPublisher;
-    gotGateByIdEvent?: GotGateByIdEventPublisher;
-    gotHistoryCloseActionEvent?: GotHistoryCloseActionEventPublisher;
-    gotHistoryOpenActionEvent?: GotHistoryOpenActionEventPublisher;
-    gotOpenGateByIdEvent?: GotOpenGateByIdEventPublisher;
-    openedGateEvent?: OpenedGateEventPublisher;
-    registeredCloseActionEvent?: RegisteredCloseActionEventPublisher;
-    registeredOpenActionEvent?: RegisteredOpenedActionEventPublisher;
+    events?: Map<Topic, EventPublisherBase<any>>;
   }) {
     this.gateService = gateService;
     this.openGateService = openGateService;
     this.closeGateService = closeGateService;
-    this.changedStateEmergencyEvent = changedStateEmergencyEvent;
-    this.changedStateGateEvent = changedStateGateEvent;
-    this.closedGateEvent = closedGateEvent;
-    this.gotCloseGateByIdEvent = gotCloseGateByIdEvent;
-    this.gotGateByIdEvent = gotGateByIdEvent;
-    this.gotHistoryCloseActionEvent = gotHistoryCloseActionEvent;
-    this.gotHistoryOpenActionEvent = gotHistoryOpenActionEvent;
-    this.gotOpenGateByIdEvent = gotOpenGateByIdEvent;
-    this.openedGateEvent = openedGateEvent;
-    this.registeredCloseActionEvent = registeredCloseActionEvent;
-    this.registeredOpenActionEvent = registeredOpenActionEvent;
+    this.events = events ?? new Map<Topic, EventPublisherBase<any>>();
   }
 
   openGates(gateId: string): Promise<GateDomainEntity> {
-    return OpenGateHelper(gateId, this.gateService, this.openedGateEvent);
+    return OpenGateHelper(
+      gateId,
+      this.gateService,
+      this.events?.get(Topic.EmergenciesOpenedGate),
+    );
   }
   closeGates(gateId: string): Promise<GateDomainEntity> {
-    return CloseGateHelper(gateId, this.gateService, this.closedGateEvent);
+    return CloseGateHelper(
+      gateId,
+      this.gateService,
+      this.events?.get(Topic.EmergenciesClosedGate),
+    );
   }
   changeStateGate(gateId: string, value: boolean): Promise<boolean> {
     return ChangeStateGateHelper(
       value,
       gateId,
       this.gateService,
-      this.changedStateGateEvent,
+      this.events?.get(Topic.EmergenciesChangedStategate),
     );
   }
   changeStateEmergency(value: boolean): Promise<boolean> {
     return ChangeStateEmergencyHelper(
       value,
       this.gateService,
-      this.changedStateEmergencyEvent,
+      this.events?.get(Topic.EmergenciesChangedStateEmergency),
     );
   }
   getGateById(gateId: string): Promise<GateDomainEntity> {
-    return GetGateByIdHelper(gateId, this.gateService, this.gotGateByIdEvent);
+    return GetGateByIdHelper(
+      gateId,
+      this.gateService,
+      this.events?.get(Topic.EmergenciesGotGotGateById),
+    );
   }
   registerOpenAction(
     data: OpenGateDomainEntity,
@@ -133,20 +94,20 @@ export class GateAggregateRoot
     return RegisterOpenActionHelper(
       data,
       this.openGateService,
-      this.registeredOpenActionEvent,
+      this.events?.get(Topic.EmergenciesRegisteredOpenAction),
     );
   }
   getHistoryOpenAction(): Promise<OpenGateDomainEntity[]> {
     return GetHistoryOpenActionHelper(
       this.openGateService,
-      this.gotHistoryOpenActionEvent,
+      this.events?.get(Topic.EmergenciesGotHistoryOpenAction),
     );
   }
   getOpenGateById(gateId: string): Promise<OpenGateDomainEntity> {
     return GetOpenGateByIdHelper(
       gateId,
       this.openGateService,
-      this.gotOpenGateByIdEvent,
+      this.events?.get(Topic.EmergenciesGotOpenGateId),
     );
   }
   registerCloseAction(
@@ -155,20 +116,20 @@ export class GateAggregateRoot
     return RegisterCloseActionHelper(
       data,
       this.closeGateService,
-      this.registeredCloseActionEvent,
+      this.events?.get(Topic.EmergenciesRegisteredCloseAction),
     );
   }
   getHistoryCloseAction(): Promise<CloseGateDomainEntity[]> {
     return GetHistoryCloseActionHelper(
       this.closeGateService,
-      this.gotHistoryCloseActionEvent,
+      this.events?.get(Topic.EmergenciesGotHistoryCloseAction),
     );
   }
   getCloseGateById(gateId: string): Promise<CloseGateDomainEntity> {
     return GetCloseGateByIdHelper(
       gateId,
       this.closeGateService,
-      this.gotCloseGateByIdEvent,
+      this.events?.get(Topic.EmergenciesGotCloseGateById),
     );
   }
 }
