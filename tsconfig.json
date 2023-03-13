@@ -18,8 +18,8 @@
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "paths": {
-      "@sofka": ["/src/shared/sofka"],
-      "@validations": ["/src/shared/validations"],
+      "@sofka": ["/src/shared/sofka/*"],
+      "@validations": ["/src/shared/validations/*"],
       "@emergencies/infrastructure": [
         "/src/subdomains/house-machines/contexts/emergencies/infrastructure/*"
       ],
