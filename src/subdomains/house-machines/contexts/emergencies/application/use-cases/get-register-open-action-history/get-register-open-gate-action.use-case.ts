@@ -3,11 +3,13 @@ import {
   ValueObjectErrorHandler,
   ValueObjectException,
 } from 'src/shared/sofka';
+import { EventPublisherBase } from 'src/shared/sofka/event-publisher.base';
 import {
   GateAggregateRoot,
   GotOpenGateByIdEventPublisher,
   IOpenGateDomainService,
   OpenGateIdValueObject,
+  Topic,
 } from '../../../domain';
 import { IGetRegisterOpenGateActionCommand } from '../../../domain/interfaces/commands/get-open-gate-by-id.command';
 import { IGotRegisterOpenGateActionReponse } from '../../../domain/interfaces/responses/got-open-gate-by-id.response';
@@ -24,11 +26,12 @@ export class GetRegisterOpenGateActionUseCase
   constructor(
     private readonly openGateService: IOpenGateDomainService,
     private readonly gotOpenGateByIdEvent: GotOpenGateByIdEventPublisher,
+    private readonly events?: Map<Topic, EventPublisherBase<any>>,
   ) {
     super();
     this.gateAggregate = new GateAggregateRoot({
       openGateService,
-      gotOpenGateByIdEvent,
+      events: (this.events = new Map<Topic, EventPublisherBase<any>>()),
     });
   }
   async execute(

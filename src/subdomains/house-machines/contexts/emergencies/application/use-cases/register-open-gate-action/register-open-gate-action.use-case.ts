@@ -1,9 +1,9 @@
-import { combineAll } from 'rxjs';
 import {
   IUseCase,
   ValueObjectErrorHandler,
   ValueObjectException,
 } from 'src/shared/sofka';
+import { EventPublisherBase } from 'src/shared/sofka/event-publisher.base';
 import {
   GateAggregateRoot,
   GateIdValueObject,
@@ -12,6 +12,7 @@ import {
   OpenGateDomainEntity,
   OpenGateIdValueObject,
   RegisteredOpenedActionEventPublisher,
+  Topic,
 } from '../../../domain';
 import { IRegisterOpenActionCommand } from '../../../domain/interfaces/commands/register-open-action.command';
 import { IRegisteredOpenACtionResponse } from '../../../domain/interfaces/responses/registered-open-action.response';
@@ -24,12 +25,12 @@ export class RegisterOpenGateActionUseCase
   private readonly gateAggregate: GateAggregateRoot;
   constructor(
     private readonly openGateService: IOpenGateDomainService,
-    private readonly registeredOpenActionEvent: RegisteredOpenedActionEventPublisher,
+    private readonly events?: Map<Topic, EventPublisherBase<any>>,
   ) {
     super();
     this.gateAggregate = new GateAggregateRoot({
       openGateService,
-      registeredOpenActionEvent,
+      events: (this.events = new Map<Topic, EventPublisherBase<any>>()),
     });
   }
   async execute(
