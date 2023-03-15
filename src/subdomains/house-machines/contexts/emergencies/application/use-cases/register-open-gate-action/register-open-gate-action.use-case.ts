@@ -25,7 +25,7 @@ export class RegisterOpenGateActionUseCase
   private readonly gateAggregate: GateAggregateRoot;
   constructor(
     private readonly openGateService: IOpenGateDomainService,
-    private readonly events?: Map<Topic, EventPublisherBase<any>>,
+    private readonly events: Map<Topic, EventPublisherBase<any>>,
   ) {
     super();
     this.gateAggregate = new GateAggregateRoot({
@@ -59,8 +59,9 @@ export class RegisterOpenGateActionUseCase
     entity.gate = gate.valueOf();
     entity.openGateId = openGateId.valueOf();
     entity.openDate = openDate.valueOf();
-
-    const result = await this.openGateService.registerOpenAction(entity);
+    
+    //Retornar
+    const result = await this.gateAggregate.registerOpenAction(entity);
     return { state: true, message: 'Se registrado la accion', data: result };
   }
 }

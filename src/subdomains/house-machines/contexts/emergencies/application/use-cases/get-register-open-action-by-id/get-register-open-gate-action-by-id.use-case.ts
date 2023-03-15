@@ -14,7 +14,7 @@ import {
 import { IGetRegisterOpenGateActionCommand } from '../../../domain/interfaces/commands/get-open-gate-by-id.command';
 import { IGotRegisterOpenGateActionReponse } from '../../../domain/interfaces/responses/got-open-gate-by-id.response';
 
-export class GetRegisterOpenGateActionUseCase
+export class GetRegisterOpenGateActionByIdUseCase
   extends ValueObjectErrorHandler
   implements
     IUseCase<
@@ -50,7 +50,7 @@ export class GetRegisterOpenGateActionUseCase
       );
     }
 
-    const answer = await this.openGateService.getOpenGateById(
+    const answer = await this.gateAggregate.getOpenGateById(
       openGateId.valueOf(),
     );
 
