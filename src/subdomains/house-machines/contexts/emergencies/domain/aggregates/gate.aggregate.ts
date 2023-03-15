@@ -23,6 +23,7 @@ import {
   RegisterCloseActionHelper,
   RegisterOpenActionHelper,
 } from './helpers';
+import { RegisterGateHelper } from './helpers/register-gate/register-gate.helper';
 
 export class GateAggregateRoot
   implements
@@ -51,7 +52,13 @@ export class GateAggregateRoot
     this.closeGateService = closeGateService;
     this.events = events ?? new Map<Topic, EventPublisherBase<any>>();
   }
-
+  registerGate(entity: GateDomainEntity): Promise<GateDomainEntity> {
+    return RegisterGateHelper(
+      entity,
+      this.gateService,
+      this.events?.get(Topic.EmergenciesRegisteredGate),
+    );
+  }
   openGates(gateId: string): Promise<GateDomainEntity> {
     return OpenGateHelper(
       gateId,

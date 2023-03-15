@@ -10,4 +10,5 @@ export enum Topic {
   EmergenciesOpenedGate = 'emergencies.openedGate',
   EmergenciesRegisteredCloseAction = 'emergencies.registeredCloseAction',
   EmergenciesRegisteredOpenAction = 'emergencies.registeredOpenedAction',
+  EmergenciesRegisteredGate = 'emergencies.registeredGate',
 }
