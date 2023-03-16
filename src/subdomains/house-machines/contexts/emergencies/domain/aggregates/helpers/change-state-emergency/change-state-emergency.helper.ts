@@ -14,6 +14,7 @@ import { IGateDomainService } from '../../../services';
  */
 export const ChangeStateEmergencyHelper = async (
   value: boolean,
+  gateId: string,
   gateService?: IGateDomainService,
   changedStateEmergencyEvent?: ChangedStateEmergencyEventPusblisher,
 ): Promise<boolean> => {
@@ -26,7 +27,7 @@ export const ChangeStateEmergencyHelper = async (
     );
   }
 
-  const answer = await gateService.changeStateEmergency(value);
+  const answer = await gateService.changeStateEmergency(gateId, value);
   changedStateEmergencyEvent.response = answer;
   changedStateEmergencyEvent.publish();
   return answer;

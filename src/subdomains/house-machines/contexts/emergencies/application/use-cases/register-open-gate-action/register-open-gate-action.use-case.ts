@@ -6,6 +6,7 @@ import {
 import { EventPublisherBase } from 'src/shared/sofka/event-publisher.base';
 import {
   GateAggregateRoot,
+  GateDomainEntity,
   GateIdValueObject,
   IOpenGateDomainService,
   OpenGateDateValueObject,
@@ -25,26 +26,32 @@ export class RegisterOpenGateActionUseCase
   private readonly gateAggregate: GateAggregateRoot;
   constructor(
     private readonly openGateService: IOpenGateDomainService,
-    private readonly events: Map<Topic, EventPublisherBase<any>>,
+    private readonly registerOpenGateEvent: RegisteredOpenedActionEventPublisher,
   ) {
     super();
+    const events = new Map<Topic, EventPublisherBase<any>>();
     this.gateAggregate = new GateAggregateRoot({
       openGateService,
-      events: (this.events = new Map<Topic, EventPublisherBase<any>>()),
+      events: events.set(
+        Topic.EmergenciesRegisteredOpenAction,
+        this.registerOpenGateEvent,
+      ),
     });
   }
   async execute(
     command?: IRegisterOpenActionCommand | undefined,
   ): Promise<IRegisteredOpenACtionResponse> {
     //Validaciones
-    const openGateId = new OpenGateIdValueObject(command?.openGateId);
-    const openDate = new OpenGateDateValueObject(command?.openDate);
-    const gate = new GateIdValueObject(command?.gate);
+    const openGateId = new OpenGateIdValueObject(command?.id);
+    const openDate = new OpenGateDateValueObject(command?.date);
+    //const gate = new GateIdValueObject(command?.gatesOpen.id);
+    const gate = new GateDomainEntity({
+      gateId: command?.id,
+    });
 
     //Captura de Errores
     if (openGateId.hasErrors() === true) this.setErrors(openGateId.getErrors());
     if (openDate.hasErrors() === true) this.setErrors(openDate.getErrors());
-    if (gate.hasErrors() === true) this.setErrors(gate.getErrors());
 
     //Validar Errores
     if (this.hasErrors() === true) {
@@ -56,10 +63,10 @@ export class RegisterOpenGateActionUseCase
 
     //Create Entity
     const entity = new OpenGateDomainEntity();
-    entity.gate = gate.valueOf();
-    entity.openGateId = openGateId.valueOf();
-    entity.openDate = openDate.valueOf();
-    
+    entity.gatesOpen = gate.valueOf();
+    entity.id = openGateId.valueOf();
+    entity.date = openDate.valueOf();
+
     //Retornar
     const result = await this.gateAggregate.registerOpenAction(entity);
     return { state: true, message: 'Se registrado la accion', data: result };

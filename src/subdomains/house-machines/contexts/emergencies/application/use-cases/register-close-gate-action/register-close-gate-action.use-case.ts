@@ -36,9 +36,9 @@ export class RegisterCloseGateActionUseCase
     command?: IRegisterCloseActionCommand | undefined,
   ): Promise<IRegisteredCloseACtionResponse> {
     //Validaciones
-    const closeGateId = new CloseGateIdValueObject(command?.closeGateId);
-    const closeDate = new CloseGateDateValueObject(command?.closeDate);
-    const gate = new GateIdValueObject(command?.gate);
+    const closeGateId = new CloseGateIdValueObject(command?.id);
+    const closeDate = new CloseGateDateValueObject(command?.date);
+    const gate = new GateIdValueObject(command?.gatesClose.id);
 
     //Captura de Errores
     if (closeGateId.hasErrors() === true)
@@ -57,8 +57,8 @@ export class RegisterCloseGateActionUseCase
     //Create Entity
     const entity = new CloseGateDomainEntity();
     entity.gate = gate.valueOf();
-    entity.closeGateId = closeGateId.valueOf();
-    entity.closeDate = closeDate.valueOf();
+    entity.id = closeGateId.valueOf();
+    entity.date = closeDate.valueOf();
 
     //Retornar
     const result = await this.gateAggregate.registerCloseAction(entity);

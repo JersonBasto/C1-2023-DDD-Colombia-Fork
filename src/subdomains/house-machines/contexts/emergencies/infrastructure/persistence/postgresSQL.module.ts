@@ -1,5 +1,9 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { Topic } from '../../domain/events/enum';
+import { CloseGateController } from '../controllers/close-gate-controller/close-gate.controller';
+import { GateController } from '../controllers/gate-controller/gate.controller';
+import { OpenGateController } from '../controllers/open-gate-controller/open-gate.controller';
 import { TypeOrmPostgresConfigService } from './databases/postgres/configs/type-orm-postgres-config.service';
 import { CloseGateEntity } from './entities/close-gate-entity/close-gate.entity';
 import { GateEntity } from './entities/gate-entity/gate-entity.entity';
@@ -10,6 +14,8 @@ import { OpenGateRepository } from './repositories/open-gate-repository/open-gat
 import { CloseGateService } from './servicies/close-gate.service';
 import { GateService } from './servicies/gate.service';
 import { OpenGateService } from './servicies/open-gate.service';
+import { RegisteredOpenGatePublisher } from '../messaging/publisher/registered-open-gate-action.publisher';
+import { ClientsModule, Transport } from '@nestjs/microservices';
 
 @Module({
   imports: [
@@ -17,8 +23,20 @@ import { OpenGateService } from './servicies/open-gate.service';
       useClass: TypeOrmPostgresConfigService,
     }),
     TypeOrmModule.forFeature([OpenGateEntity, CloseGateEntity, GateEntity]),
+    ClientsModule.register([
+      {
+        name: 'EMERGENCIES_CONTEXT',
+        transport: Transport.KAFKA,
+        options: {
+          client: {
+            clientId: 'EMERGENCIES_CONTEXT',
+            brokers: ['localhost:9092'],
+          },
+        },
+      },
+    ]),
   ],
-  controllers: [],
+  controllers: [CloseGateController, GateController, OpenGateController],
   providers: [
     TypeOrmPostgresConfigService,
     OpenGateRepository,
@@ -27,6 +45,7 @@ import { OpenGateService } from './servicies/open-gate.service';
     GateRepository,
     CloseGateService,
     CloseGateRepository,
+    RegisteredOpenGatePublisher
   ],
   exports: [
     OpenGateRepository,

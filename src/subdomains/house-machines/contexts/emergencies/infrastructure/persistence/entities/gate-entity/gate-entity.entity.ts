@@ -46,5 +46,6 @@ export class GateEntity {
   @OneToMany(() => CloseGateEntity, (closeGate) => closeGate.gatesClose, {
     cascade: ['insert'],
   })
+  @JoinColumn()
   closeGates?: CloseGateEntity[];
 }

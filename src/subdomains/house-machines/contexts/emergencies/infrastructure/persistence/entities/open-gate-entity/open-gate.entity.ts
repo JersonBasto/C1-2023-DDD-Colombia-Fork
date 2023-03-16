@@ -19,14 +19,15 @@ export class OpenGateEntity {
     name: 'open_gate_id',
     default: () => 'uuid_generate_v4()',
   })
-  id: string;
+  id?: string;
   @Column('date', {
     default: () => 'CURRENT_DATE',
   })
-  date: Date | number;
+  date?: Date | number;
 
   @ManyToOne(() => GateEntity, (gate) => gate.openGates, {
     cascade: ['insert'],
   })
-  gatesOpen: GateEntity[];
+  @JoinColumn()
+  gatesOpen: GateEntity;
 }

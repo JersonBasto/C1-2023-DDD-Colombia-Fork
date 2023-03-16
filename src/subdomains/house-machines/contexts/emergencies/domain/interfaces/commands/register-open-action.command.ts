@@ -1,5 +1,7 @@
+import { GateEntity } from '../../../infrastructure/persistence/entities/gate-entity/gate-entity.entity';
+
 export interface IRegisterOpenActionCommand {
-  openGateId: string;
-  openDate: number | Date;
-  gate?: string;
+  id?: string;
+  date?: number | Date;
+  gatesOpen: GateEntity;
 }

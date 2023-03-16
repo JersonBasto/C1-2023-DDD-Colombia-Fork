@@ -50,7 +50,7 @@ export interface IGateDomainService<
    * @return {*}  {Promise<boolean>}
    * @memberof IGateDomainService
    */
-  changeStateEmergency(value: boolean): Promise<boolean>;
+  changeStateEmergency(gateId: string, value: boolean): Promise<boolean>;
 
   /**
    *

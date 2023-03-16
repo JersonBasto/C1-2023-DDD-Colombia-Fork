@@ -1,4 +1,4 @@
-import { Column, Entity, Index, ManyToOne } from 'typeorm';
+import { Column, Entity, Index, JoinColumn, ManyToOne } from 'typeorm';
 import { GateEntity } from '../gate-entity/gate-entity.entity';
 
 @Index('close_gate_date_key', ['date'])
@@ -10,14 +10,15 @@ export class CloseGateEntity {
     name: 'close_gate_id',
     default: () => 'uuid_generate_v4()',
   })
-  id: string;
+  id?: string;
   @Column('date', {
     default: () => 'CURRENT_DATE',
   })
-  date: Date | number;
+  date?: Date | number;
 
   @ManyToOne(() => GateEntity, (gate) => gate.closeGates, {
     cascade: ['insert'],
   })
+  @JoinColumn()
   gatesClose: GateEntity;
 }

@@ -81,9 +81,10 @@ export class GateAggregateRoot
       this.events?.get(Topic.EmergenciesChangedStategate),
     );
   }
-  changeStateEmergency(value: boolean): Promise<boolean> {
+  changeStateEmergency(gateId: string, value: boolean): Promise<boolean> {
     return ChangeStateEmergencyHelper(
       value,
+      gateId,
       this.gateService,
       this.events?.get(Topic.EmergenciesChangedStateEmergency),
     );

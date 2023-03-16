@@ -13,14 +13,14 @@ export class GateRepository implements IBase<GateEntity> {
     return this.gateRepository.save(item);
   }
   async update(id: string, item: GateEntity): Promise<GateEntity> {
-    const data = await this.gateRepository.findOneBy({ id: id });
+    let data = await this.gateRepository.findOneBy({ id: id });
     if (data) {
-      const entity = {
+      data = {
         ...data,
         ...item,
         id,
       };
-      return this.gateRepository.save(entity);
+      return this.gateRepository.save(data);
     }
     throw new NotFoundException('No se encontro data con el Id');
   }
@@ -36,7 +36,8 @@ export class GateRepository implements IBase<GateEntity> {
     return this.gateRepository.find();
   }
   async findOne(id: string): Promise<GateEntity> {
-    const data = await this.gateRepository.findOneBy({ id: id });
+    console.log(id);
+    const data = await this.gateRepository.findOne({ where: { id } });
     if (data) return data;
     throw new NotFoundException('No se encontro Data con el Id');
   }

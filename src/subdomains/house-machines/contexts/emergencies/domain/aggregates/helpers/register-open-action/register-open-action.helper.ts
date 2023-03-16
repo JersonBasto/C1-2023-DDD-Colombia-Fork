@@ -5,8 +5,8 @@ import { IOpenGateDomainService } from '../../../services';
 
 export const RegisterOpenActionHelper = async (
   data: OpenGateDomainEntity,
-  openGateService: IOpenGateDomainService |undefined,
-  registeredOpenActionEvent: RegisteredOpenedActionEventPublisher |undefined,
+  openGateService?: IOpenGateDomainService,
+  registeredOpenActionEvent?: RegisteredOpenedActionEventPublisher,
 ) => {
   if (!openGateService) {
     throw new AggregateRootException('El evento openGateService no es valido');

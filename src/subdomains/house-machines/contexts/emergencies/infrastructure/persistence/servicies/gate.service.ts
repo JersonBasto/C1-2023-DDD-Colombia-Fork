@@ -3,17 +3,17 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
+import { IGateDomainService } from '../../../domain';
 import { GateEntity } from '../entities/gate-entity/gate-entity.entity';
 import { GateRepository } from '../repositories/gate-repository/gate.repository';
-import { IGateService } from './interface/gate/gate.interface';
 
 @Injectable()
-export class GateService implements IGateService<GateEntity> {
+export class GateService implements IGateDomainService<GateEntity> {
   constructor(private readonly gateRepository: GateRepository) {}
-  registerGate(entity: GateEntity): Promise<GateEntity> {
-    return this.gateRepository.create(entity);
+  async registerGate(entity: GateEntity): Promise<GateEntity> {
+    return await this.gateRepository.create(entity);
   }
-  async openGate(gateId: string): Promise<GateEntity> {
+  async openGates(gateId: string): Promise<GateEntity> {
     const data = await this.gateRepository.findOne(gateId);
     if (data.emergency && data.stateGate) {
       data.emergencyDate = Date.now();
@@ -28,7 +28,7 @@ export class GateService implements IGateService<GateEntity> {
   async closeGates(gateId: string): Promise<GateEntity> {
     const data = await this.gateRepository.findOne(gateId);
     if (data.emergency === false && data.stateGate === false) {
-      data.emergencyDate = 0;
+      data.emergencyDate = undefined;
       this.gateRepository.update(gateId, data);
       const newData = await this.gateRepository.findOne(gateId);
       return newData;

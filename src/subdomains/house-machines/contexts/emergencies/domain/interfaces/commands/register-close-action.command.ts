@@ -1,6 +1,7 @@
+import { GateEntity } from '../../../infrastructure/persistence/entities/gate-entity/gate-entity.entity';
+
 export interface IRegisterCloseActionCommand {
-    closeGateId: string;
-    closeDate: number | Date;
-    gate?: string;
-  }
-  
+  id?: string;
+  date?: number | Date;
+  gatesClose: GateEntity;
+}

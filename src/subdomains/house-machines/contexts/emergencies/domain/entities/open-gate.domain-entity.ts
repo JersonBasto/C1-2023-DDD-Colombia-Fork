@@ -4,15 +4,16 @@ import { GateDomainEntity } from './gate.domain-entity';
 import { IOpenGateDomainEntity } from './interfaces/open-gate.domain-entity.interface';
 import { v4 as uuid } from 'uuid';
 import { GateIdValueObject } from '../value-objects';
+import { GateEntity } from '../../infrastructure/persistence/entities/gate-entity/gate-entity.entity';
 
 export class OpenGateDomainEntity implements IOpenGateDomainEntity {
-  openGateId: string | OpenGateIdValueObject;
-  openDate: number | Date | OpenGateDateValueObject;
-  gate?: string | GateIdValueObject;
+  id?: string | OpenGateIdValueObject;
+  date?: number | Date | OpenGateDateValueObject;
+  gatesOpen: GateDomainEntity;
   constructor(data?: OpenGateDomainEntity) {
-    if (data?.openDate) this.openDate = data.openDate;
-    if (data?.openGateId) this.openGateId = data.openGateId;
-    else this.openGateId = uuid();
-    if (data?.gate) this.gate = data.gate;
+    if (data?.date) this.date = data.date;
+    if (data?.id) this.id = data.id;
+    else this.id = uuid();
+    if (data?.gatesOpen) this.gatesOpen = data.gatesOpen;
   }
 }

@@ -6,13 +6,13 @@ import { v4 as uuid } from 'uuid';
 import { GateIdValueObject } from '../value-objects/gate/gate-id';
 
 export class CloseGateDomainEntity implements ICloseGateDomainEntity {
-  closeGateId: string | CloseGateIdValueObject;
-  closeDate: number | Date | CloseGateDateValueObject;
+  id?: string | CloseGateIdValueObject;
+  date?: number | Date | CloseGateDateValueObject;
   gate?: string | GateIdValueObject;
   constructor(data?: CloseGateDomainEntity) {
-    if (data?.closeGateId) this.closeGateId = data.closeGateId;
-    else this.closeGateId = uuid();
-    if (data?.closeDate) this.closeDate = data.closeDate;
+    if (data?.id) this.id = data.id;
+    else this.id = uuid();
+    if (data?.date) this.date = data.date;
     if (data?.gate) this.gate = data.gate;
   }
 }
