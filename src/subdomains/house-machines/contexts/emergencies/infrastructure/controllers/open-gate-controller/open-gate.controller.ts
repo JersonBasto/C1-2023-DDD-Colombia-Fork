@@ -1,19 +1,17 @@
 import { Controller, Get, Param, Post } from '@nestjs/common/decorators';
-import { EventPublisherBase } from 'src/shared/sofka/event-publisher.base';
 import { GetRegisterOpenGateActionByIdUseCase } from '../../../application/use-cases';
 import { RegisterOpenGateActionUseCase } from '../../../application/use-cases/register-open-gate-action';
 import {
   IGetRegisterOpenGateActionCommand,
   IGotRegisterOpenGateActionReponse,
   IRegisteredOpenACtionResponse,
-  IRegisterOpenActionCommand,
-  RegisteredOpenedActionEventPublisher,
-  Topic,
 } from '../../../domain';
 import { GotRegisterOpenGatePublisher } from '../../messaging/publisher/got-register-open-action-by-id.publisher';
 import { RegisteredOpenGatePublisher } from '../../messaging/publisher/registered-open-gate-action.publisher';
 import { OpenGateEntity } from '../../persistence/entities/open-gate-entity/open-gate.entity';
 import { OpenGateService } from '../../persistence/servicies/open-gate.service';
+import { GetRegisterOpenGateActionCommand } from '../../utils/commands/get-register-open-gate-action.command';
+import { RegisterOpenActionCommand } from '../../utils/commands/register-open-action.command';
 
 @Controller('open-gate')
 export class OpenGateController {
@@ -28,7 +26,7 @@ export class OpenGateController {
   }
   @Get(':id')
   async GetOpenAction(
-    @Param() id: IGetRegisterOpenGateActionCommand,
+    @Param() id: GetRegisterOpenGateActionCommand,
   ): Promise<IGotRegisterOpenGateActionReponse> {
     const useCase = new GetRegisterOpenGateActionByIdUseCase(
       this.openGateService,
@@ -38,7 +36,7 @@ export class OpenGateController {
   }
   @Post()
   async registerOpenAction(
-    commandOpengate: IRegisterOpenActionCommand,
+    commandOpengate: RegisterOpenActionCommand,
   ): Promise<IRegisteredOpenACtionResponse> {
     const useCase = new RegisterOpenGateActionUseCase(
       this.openGateService,
