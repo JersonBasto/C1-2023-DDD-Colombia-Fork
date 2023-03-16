@@ -10,7 +10,7 @@ import { v4 as uuid } from 'uuid';
 export class GateDomainEntity implements IGateDomainEntity {
   emergency?: boolean | EmergencyValueObject | undefined;
   stateGate?: boolean | StateGateValueObject | undefined;
-  emergencyDate?: number | Date | EmergencyDateValueObject | undefined;
+  emergencyDate?: number | Date | EmergencyDateValueObject | undefined | string;
   openGate?: OpenGateDomainEntity[];
   closeGate?: CloseGateDomainEntity[];
   gateId?: string | GateIdValueObject;

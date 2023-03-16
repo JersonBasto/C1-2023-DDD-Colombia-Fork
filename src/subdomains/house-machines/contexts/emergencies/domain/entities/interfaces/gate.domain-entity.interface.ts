@@ -8,7 +8,7 @@ import { IOpenGateDomainEntity } from './open-gate.domain-entity.interface';
 export interface IGateDomainEntity {
   emergency?: boolean | EmergencyValueObject;
   stateGate?: boolean | StateGateValueObject;
-  emergencyDate?: Date | number | EmergencyDateValueObject;
+  emergencyDate?: Date | number | EmergencyDateValueObject | string;
   openGate?: IOpenGateDomainEntity[];
   closeGate?: ICloseGateDomainEntity[];
   gateId?: string | GateIdValueObject;

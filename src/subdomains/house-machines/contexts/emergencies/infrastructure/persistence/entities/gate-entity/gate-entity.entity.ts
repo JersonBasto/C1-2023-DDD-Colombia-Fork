@@ -1,10 +1,4 @@
-import {
-  Column,
-  Entity,
-  Index,
-  JoinColumn,
-  OneToMany,
-} from 'typeorm';
+import { Column, Entity, Index, JoinColumn, OneToMany } from 'typeorm';
 import { CloseGateEntity } from '../close-gate-entity/close-gate.entity';
 import { OpenGateEntity } from '../open-gate-entity/open-gate.entity';
 
@@ -30,11 +24,12 @@ export class GateEntity {
   })
   emergency: boolean;
 
-  @Column('date', {
-    name:"emergency_date",
-    default: () => 'CURRENT_DATE',
+  @Column({
+    type: 'timestamptz',
+    name: 'emergency_date',
+    default: () => 'NOW()',
   })
-  emergencyDate?: Date | number;
+  emergencyDate?: Date | number | string;
 
   @OneToMany(() => OpenGateEntity, (openGate) => openGate.gatesOpen, {
     cascade: ['insert'],

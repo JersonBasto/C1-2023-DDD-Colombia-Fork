@@ -19,6 +19,9 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
 import { GotRegisterOpenGatePublisher } from '../messaging/publisher/got-register-open-action-by-id.publisher';
 import { OpenedGatePublisher } from '../messaging/publisher/opened-gate.publisher';
 import { RegisteredGatePublisher } from '../messaging/publisher/registered-gate.publisher';
+import { ClosedGatePublisher } from '../messaging/publisher/closed-gate.publisher';
+import { APP_FILTER } from '@nestjs/core';
+import { ObjectValueExceptionFilter } from '../utils/exception-filters/object-value.exception-filter';
 
 @Module({
   imports: [
@@ -52,6 +55,11 @@ import { RegisteredGatePublisher } from '../messaging/publisher/registered-gate.
     GotRegisterOpenGatePublisher,
     OpenedGatePublisher,
     RegisteredGatePublisher,
+    ClosedGatePublisher,
+    {
+      provide: APP_FILTER,
+      useClass: ObjectValueExceptionFilter,
+    },
   ],
   exports: [
     OpenGateRepository,
