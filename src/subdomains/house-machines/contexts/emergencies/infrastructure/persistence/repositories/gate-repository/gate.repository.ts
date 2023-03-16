@@ -36,8 +36,7 @@ export class GateRepository implements IBase<GateEntity> {
     return this.gateRepository.find();
   }
   async findOne(id: string): Promise<GateEntity> {
-    console.log(id);
-    const data = await this.gateRepository.findOne({ where: { id } });
+    const data = await this.gateRepository.findOneBy({ id:id });
     if (data) return data;
     throw new NotFoundException('No se encontro Data con el Id');
   }

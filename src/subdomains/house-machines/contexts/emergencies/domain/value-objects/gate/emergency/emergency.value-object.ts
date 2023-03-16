@@ -9,7 +9,7 @@ import { IsBoolean } from 'src/shared/validations/is-boolean.validator';
  * @extends {ValueObjectBase<boolean>}
  */
 export class EmergencyValueObject extends ValueObjectBase<boolean> {
-  constructor(value: boolean) {
+  constructor(value?: boolean) {
     super(value);
   }
 

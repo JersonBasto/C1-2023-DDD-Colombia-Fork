@@ -27,10 +27,10 @@ import { ICloseGateResponse } from '../../../domain/interfaces/responses/closed-
       });
     }
     async execute(
-      command?: IOpenGateCommand | undefined,
-    ): Promise<IOpenGateResponse> {
+      command?: ICloseGateCommand | undefined,
+    ): Promise<ICloseGateResponse> {
       //Validaciones
-      const gateId = new GateIdValueObject(command?.gateId);
+      const gateId = new GateIdValueObject(command?.id);
       //Captura de errores
       if (gateId.hasErrors() === true) this.setErrors(gateId.getErrors());
       //Validaciones de errores

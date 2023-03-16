@@ -1,3 +1,3 @@
 export interface IGetRegisterOpenGateActionCommand {
-  openGateId: string;
+  id: string;
 }

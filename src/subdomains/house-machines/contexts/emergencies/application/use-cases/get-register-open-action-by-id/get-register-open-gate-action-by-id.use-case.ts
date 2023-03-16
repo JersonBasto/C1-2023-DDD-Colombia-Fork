@@ -26,19 +26,22 @@ export class GetRegisterOpenGateActionByIdUseCase
   constructor(
     private readonly openGateService: IOpenGateDomainService,
     private readonly gotOpenGateByIdEvent: GotOpenGateByIdEventPublisher,
-    private readonly events?: Map<Topic, EventPublisherBase<any>>,
   ) {
     super();
+    const events = new Map<Topic, EventPublisherBase<any>>();
     this.gateAggregate = new GateAggregateRoot({
       openGateService,
-      events: (this.events = new Map<Topic, EventPublisherBase<any>>()),
+      events: events.set(
+        Topic.EmergenciesGotOpenGateId,
+        this.gotOpenGateByIdEvent,
+      ),
     });
   }
   async execute(
     command?: IGetRegisterOpenGateActionCommand | undefined,
   ): Promise<IGotRegisterOpenGateActionReponse> {
     //Validaciones
-    const openGateId = new OpenGateIdValueObject(command?.openGateId);
+    const openGateId = new OpenGateIdValueObject(command?.id);
 
     //Captura de Errores
     if (openGateId.hasErrors()) this.setErrors(openGateId.getErrors());

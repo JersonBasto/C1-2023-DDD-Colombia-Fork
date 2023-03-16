@@ -16,6 +16,9 @@ import { GateService } from './servicies/gate.service';
 import { OpenGateService } from './servicies/open-gate.service';
 import { RegisteredOpenGatePublisher } from '../messaging/publisher/registered-open-gate-action.publisher';
 import { ClientsModule, Transport } from '@nestjs/microservices';
+import { GotRegisterOpenGatePublisher } from '../messaging/publisher/got-register-open-action-by-id.publisher';
+import { OpenedGatePublisher } from '../messaging/publisher/opened-gate.publisher';
+import { RegisteredGatePublisher } from '../messaging/publisher/registered-gate.publisher';
 
 @Module({
   imports: [
@@ -45,7 +48,10 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
     GateRepository,
     CloseGateService,
     CloseGateRepository,
-    RegisteredOpenGatePublisher
+    RegisteredOpenGatePublisher,
+    GotRegisterOpenGatePublisher,
+    OpenedGatePublisher,
+    RegisteredGatePublisher,
   ],
   exports: [
     OpenGateRepository,

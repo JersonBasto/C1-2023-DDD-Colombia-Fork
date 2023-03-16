@@ -17,7 +17,7 @@ export class GateIdValueObject extends ValueObjectBase<string> {
   validateData(): void {
     this.validateStructure();
   }
-
+  
   private validateStructure(): void {
     if (this.value && IsUUID4(this.value) === false) {
       this.setError({

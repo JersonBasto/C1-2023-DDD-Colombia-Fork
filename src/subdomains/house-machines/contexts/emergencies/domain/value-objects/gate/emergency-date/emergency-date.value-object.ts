@@ -9,7 +9,7 @@ import { IsDateNow } from 'src/shared/validations/is-date-now.validation';
  * @extends {(ValueObjectBase<Date | number>)}
  */
 export class EmergencyDateValueObject extends ValueObjectBase<Date | number> {
-  constructor(value: Date | number) {
+  constructor(value?: Date | number) {
     super(value);
   }
 

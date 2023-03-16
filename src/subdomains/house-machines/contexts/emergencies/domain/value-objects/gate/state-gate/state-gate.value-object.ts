@@ -9,7 +9,7 @@ import { IsBoolean } from 'src/shared/validations/is-boolean.validator';
  * @extends {ValueObjectBase<boolean>}
  */
 export class StateGateValueObject extends ValueObjectBase<boolean> {
-  constructor(value: boolean) {
+  constructor(value?: boolean) {
     super(value);
   }
 
@@ -18,6 +18,7 @@ export class StateGateValueObject extends ValueObjectBase<boolean> {
   }
 
   private validateContent() {
+    console.log(this.value)
     if (!IsBoolean(this.value)) {
       this.setError({
         field: 'stateGate',

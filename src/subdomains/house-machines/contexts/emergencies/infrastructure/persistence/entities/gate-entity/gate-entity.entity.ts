@@ -3,8 +3,6 @@ import {
   Entity,
   Index,
   JoinColumn,
-  JoinTable,
-  ManyToOne,
   OneToMany,
 } from 'typeorm';
 import { CloseGateEntity } from '../close-gate-entity/close-gate.entity';

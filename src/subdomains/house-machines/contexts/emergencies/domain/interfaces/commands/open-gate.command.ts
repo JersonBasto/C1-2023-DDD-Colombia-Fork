@@ -1,3 +1,3 @@
 export interface IOpenGateCommand {
-  gateId: string;
+  id: string;
 }
