@@ -22,8 +22,8 @@ export class OpenGateEntity extends OpenGateDomainEntity {
   @ApiProperty()
   id?: string;
 
-  @Column("text")
-  @ApiProperty()
+  @Column('text')
+  @ApiProperty({ default: 'La compuerta 1 se ha abierto por emergencia' })
   description: string;
 
   @Column({

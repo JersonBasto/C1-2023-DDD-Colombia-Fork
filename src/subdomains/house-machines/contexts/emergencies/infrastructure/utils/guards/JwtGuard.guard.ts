@@ -3,6 +3,14 @@ import { BadRequestException } from '@nestjs/common/exceptions';
 import { JwtService } from '@nestjs/jwt';
 import { Observable } from 'rxjs';
 
+/**
+ *
+ * Proteje las rutas si no se tiene Token
+ *
+ * @export JwtGuard
+ * @class JwtGuard
+ * @implements {CanActivate}
+ */
 @Injectable()
 export class JwtGuard implements CanActivate {
   constructor(private readonly jwtService: JwtService) {}

@@ -20,7 +20,9 @@ export class StateGateValueObject extends ValueObjectBase<boolean> {
    * @memberof StateGateValueObject
    */
   validateData(): void {
-    this.validateContent();
+    if (this.value) {
+      this.validateContent();
+    }
   }
 
   /**

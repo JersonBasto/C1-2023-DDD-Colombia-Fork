@@ -87,12 +87,12 @@
       "src"
     ],
     "moduleNameMapper": {
-      "@sofka": "<rootDir>/shared/sofka/*",
-      "@validations": "<rootDir>/shared/validations/*",
-      "@emergencies/infrastructure": "<rootDir>/subdomains/house-machines/contexts/emergencies/infrastructure/*",
-      "@emergencies/domain": "<rootDir>/subdomains/house-machines/contexts/emergencies/domain/*",
-      "@emergencies/application": "<rootDir>/subdomains/house-machines/contexts/emergencies/application/*",
-      "EventPublisherBase": "src/shared/sofka/event-publisher.base"
+      "@sofka/*": "<rootDir>/shared/sofka/*",
+      "@validations/*": "<rootDir>/shared/validations/*",
+      "@emergencies/infrastructure/*": "<rootDir>/subdomains/house-machines/contexts/emergencies/infrastructure/*",
+      "@emergencies/domain/*": "<rootDir>/subdomains/house-machines/contexts/emergencies/domain/*",
+      "@emergencies/application/*": "<rootDir>/subdomains/house-machines/contexts/emergencies/application/*",
+      "EventPublisherBase/*": "src/shared/sofka/event-publisher.base"
     },
     "modulePaths": [
       "<rootDir>"

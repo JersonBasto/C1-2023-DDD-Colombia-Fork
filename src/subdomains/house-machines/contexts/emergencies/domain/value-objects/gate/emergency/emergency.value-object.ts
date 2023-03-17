@@ -20,7 +20,9 @@ export class EmergencyValueObject extends ValueObjectBase<boolean> {
    * @memberof EmergencyValueObject
    */
   validateData(): void {
-    this.validateContent();
+    if (this.value) {
+      this.validateContent();
+    }
   }
 
   /**
