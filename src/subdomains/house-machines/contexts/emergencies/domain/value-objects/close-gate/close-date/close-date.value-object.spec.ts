@@ -1,4 +1,4 @@
-import { CloseGateDateValueObject } from '@emergencies/domain';
+import { CloseGateDateValueObject } from "./close.date.value-object";
 
 describe('dateValueObject', () => {
   let dateValueObject: CloseGateDateValueObject;

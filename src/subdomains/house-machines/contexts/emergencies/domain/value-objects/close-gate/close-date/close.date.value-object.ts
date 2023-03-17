@@ -1,5 +1,5 @@
-import { IErrorValueObject, ValueObjectBase } from 'src/shared/sofka';
-import { IsDateNow } from 'src/shared/validations/is-date-now.validation';
+import { IErrorValueObject, ValueObjectBase } from '../../../../../../../../shared/sofka';
+import { IsDateNow } from '../../../../../../../../shared/validations';
 
 /**
  * Se crea la validacion para la fecha del closeGate
