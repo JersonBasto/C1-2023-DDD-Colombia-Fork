@@ -1,3 +1,4 @@
+import { CommandHandler } from '@nestjs/cqrs';
 import {
   IUseCase,
   ValueObjectErrorHandler,
@@ -18,7 +19,9 @@ import {
 import { IRegisterOpenActionCommand } from '../../../domain/interfaces/commands/register-open-action.command';
 import { IRegisteredOpenACtionResponse } from '../../../domain/interfaces/responses/registered-open-action.response';
 import { OpenGateDescriptionValueObject } from '../../../domain/value-objects/open-gate/open-date-description/open-gate-description.value-object';
+import { RegisterOpenActionCommand } from '../../../infrastructure/utils/commands/register-open-action.command';
 
+@CommandHandler(RegisterOpenActionCommand)
 export class RegisterOpenGateActionUseCase
   extends ValueObjectErrorHandler
   implements

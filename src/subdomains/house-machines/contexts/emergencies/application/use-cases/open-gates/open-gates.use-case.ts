@@ -1,3 +1,4 @@
+import { CommandHandler } from '@nestjs/cqrs';
 import {
   IUseCase,
   ValueObjectErrorHandler,
@@ -13,7 +14,9 @@ import {
 import { GateAggregateRoot } from '../../../domain/aggregates/gate.aggregate';
 import { IOpenGateCommand } from '../../../domain/interfaces/commands/open-gate.command';
 import { IOpenGateResponse } from '../../../domain/interfaces/responses/opened-gate.response';
+import { OpenGateCommand } from '../../../infrastructure/utils/commands/open-gate.command';
 
+@CommandHandler(OpenGateCommand)
 export class OpenGatesUseCase
   extends ValueObjectErrorHandler
   implements IUseCase<IOpenGateCommand, IOpenGateResponse>

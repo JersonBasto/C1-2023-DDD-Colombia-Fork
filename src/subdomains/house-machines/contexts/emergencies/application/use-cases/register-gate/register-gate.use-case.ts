@@ -1,3 +1,4 @@
+import { CommandHandler } from '@nestjs/cqrs/dist';
 import {
   IUseCase,
   ValueObjectErrorHandler,
@@ -19,7 +20,9 @@ import { RegisteredGateEventPublisher } from '../../../domain/events/publishers/
 import { IRegisterGateCommand } from '../../../domain/interfaces/commands/register-gate.command';
 import { IRegisteredGateResponse } from '../../../domain/interfaces/responses/registeres-gate.response';
 import { DescriptionValueObject } from '../../../domain/value-objects/gate/description/description.value-object';
+import { RegisterGateCommand } from '../../../infrastructure/utils/commands/register-gate.command';
 
+@CommandHandler(RegisterGateCommand)
 export class RegisterGateUseCase
   extends ValueObjectErrorHandler
   implements IUseCase<IRegisterGateCommand, IRegisteredGateResponse>
