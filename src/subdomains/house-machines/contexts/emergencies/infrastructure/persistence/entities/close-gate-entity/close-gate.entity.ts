@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { Column, Entity, Index, JoinColumn, ManyToOne } from 'typeorm';
 import { GateEntity } from '../gate-entity/gate-entity.entity';
 
@@ -10,10 +11,13 @@ export class CloseGateEntity {
     name: 'close_gate_id',
     default: () => 'uuid_generate_v4()',
   })
+  @ApiProperty()
   id?: string;
+  
   @Column('date', {
     default: () => 'CURRENT_DATE',
   })
+  @ApiProperty()
   date?: Date | number;
 
   @ManyToOne(() => GateEntity, (gate) => gate.closeGates, {

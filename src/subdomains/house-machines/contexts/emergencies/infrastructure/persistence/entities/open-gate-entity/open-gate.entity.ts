@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import {
   Column,
   Entity,
@@ -19,10 +20,13 @@ export class OpenGateEntity {
     name: 'open_gate_id',
     default: () => 'uuid_generate_v4()',
   })
+  @ApiProperty()
   id?: string;
+
   @Column('date', {
     default: () => 'CURRENT_DATE',
   })
+  @ApiProperty()
   date?: Date | number;
 
   @ManyToOne(() => GateEntity, (gate) => gate.openGates, {

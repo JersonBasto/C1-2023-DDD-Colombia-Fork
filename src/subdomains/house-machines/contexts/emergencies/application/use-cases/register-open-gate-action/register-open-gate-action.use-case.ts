@@ -45,15 +45,14 @@ export class RegisterOpenGateActionUseCase
     //Validaciones
     const openGateId = new OpenGateIdValueObject(command?.id);
     const openDate = new OpenGateDateValueObject(command?.date);
-    //const gate = new GateIdValueObject(command?.gatesOpen.id);
-    const gate = new GateDomainEntity({
-      gateId: command?.id,
-    });
+    const gateId = new GateIdValueObject(command?.gatesOpen.id);
+
     const description = new OpenGateDescriptionValueObject(
       command?.description,
     );
 
     //Captura de Errores
+    if (gateId.hasErrors() === true) this.setErrors(gateId.getErrors());
     if (openGateId.hasErrors() === true) this.setErrors(openGateId.getErrors());
     if (openDate.hasErrors() === true) this.setErrors(openDate.getErrors());
     if (description.hasErrors() === true)
@@ -69,10 +68,13 @@ export class RegisterOpenGateActionUseCase
 
     //Create Entity
     const entity = new OpenGateDomainEntity();
+    const gate = new GateDomainEntity({
+      gateId: command?.id,
+    });
     entity.gatesOpen = gate.valueOf();
     entity.id = openGateId.valueOf();
     entity.date = openDate.valueOf();
-    entity.description = description.valueOf()
+    entity.description = description.valueOf();
 
     //Retornar
     const result = await this.gateAggregate.registerOpenAction(entity);
