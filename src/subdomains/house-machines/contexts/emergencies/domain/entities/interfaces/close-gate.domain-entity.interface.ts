@@ -6,5 +6,6 @@ import { IGateDomainEntity } from './gate.domain-entity.interface';
 export interface ICloseGateDomainEntity {
   closeGateId?: string | CloseGateIdValueObject;
   closeDate?: Date | number | CloseGateDateValueObject;
+  description?: string;
   gate?: string | GateIdValueObject
 }

@@ -1,8 +1,7 @@
-import { Controller, Get, Param, Post } from '@nestjs/common/decorators';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common/decorators';
 import { GetRegisterOpenGateActionByIdUseCase } from '../../../application/use-cases';
 import { RegisterOpenGateActionUseCase } from '../../../application/use-cases/register-open-gate-action';
 import {
-  IGetRegisterOpenGateActionCommand,
   IGotRegisterOpenGateActionReponse,
   IRegisteredOpenACtionResponse,
 } from '../../../domain';
@@ -35,9 +34,8 @@ export class OpenGateController {
     return await useCase.execute(id);
   }
   @Post()
-  async registerOpenAction(
-    commandOpengate: RegisterOpenActionCommand,
-  ): Promise<IRegisteredOpenACtionResponse> {
+  async registerOpenAction(@Body() commandOpengate: RegisterOpenActionCommand): Promise<IRegisteredOpenACtionResponse> {
+    console.log(commandOpengate);
     const useCase = new RegisterOpenGateActionUseCase(
       this.openGateService,
       this.registeredOpenGateEvent,

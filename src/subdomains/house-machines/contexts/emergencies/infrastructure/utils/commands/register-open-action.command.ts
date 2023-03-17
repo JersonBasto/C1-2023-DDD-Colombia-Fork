@@ -7,4 +7,6 @@ export class RegisterOpenActionCommand implements IRegisterOpenActionCommand{
     date?: number | Date | undefined;
     @IsString()
     gatesOpen: GateEntity;
+    @IsString()
+    description: string;
 }

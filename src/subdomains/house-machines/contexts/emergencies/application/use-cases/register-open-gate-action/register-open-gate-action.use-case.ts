@@ -17,6 +17,7 @@ import {
 } from '../../../domain';
 import { IRegisterOpenActionCommand } from '../../../domain/interfaces/commands/register-open-action.command';
 import { IRegisteredOpenACtionResponse } from '../../../domain/interfaces/responses/registered-open-action.response';
+import { OpenGateDescriptionValueObject } from '../../../domain/value-objects/open-gate/open-date-description/open-gate-description.value-object';
 
 export class RegisterOpenGateActionUseCase
   extends ValueObjectErrorHandler
@@ -48,10 +49,15 @@ export class RegisterOpenGateActionUseCase
     const gate = new GateDomainEntity({
       gateId: command?.id,
     });
+    const description = new OpenGateDescriptionValueObject(
+      command?.description,
+    );
 
     //Captura de Errores
     if (openGateId.hasErrors() === true) this.setErrors(openGateId.getErrors());
     if (openDate.hasErrors() === true) this.setErrors(openDate.getErrors());
+    if (description.hasErrors() === true)
+      this.setErrors(description.getErrors());
 
     //Validar Errores
     if (this.hasErrors() === true) {
@@ -66,6 +72,7 @@ export class RegisterOpenGateActionUseCase
     entity.gatesOpen = gate.valueOf();
     entity.id = openGateId.valueOf();
     entity.date = openDate.valueOf();
+    entity.description = description.valueOf()
 
     //Retornar
     const result = await this.gateAggregate.registerOpenAction(entity);

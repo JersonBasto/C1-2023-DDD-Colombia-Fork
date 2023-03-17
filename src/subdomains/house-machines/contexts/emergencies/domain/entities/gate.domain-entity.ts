@@ -14,6 +14,7 @@ export class GateDomainEntity implements IGateDomainEntity {
   openGate?: OpenGateDomainEntity[];
   closeGate?: CloseGateDomainEntity[];
   gateId?: string | GateIdValueObject;
+  description?:string;
 
   constructor(data?: GateDomainEntity) {
     if (data?.gateId) this.gateId = data.gateId;

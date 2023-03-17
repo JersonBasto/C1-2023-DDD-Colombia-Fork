@@ -18,7 +18,6 @@ export class StateGateValueObject extends ValueObjectBase<boolean> {
   }
 
   private validateContent() {
-    console.log(this.value)
     if (!IsBoolean(this.value)) {
       this.setError({
         field: 'stateGate',

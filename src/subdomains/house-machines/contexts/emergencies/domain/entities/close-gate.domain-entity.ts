@@ -9,6 +9,7 @@ export class CloseGateDomainEntity implements ICloseGateDomainEntity {
   id?: string | CloseGateIdValueObject;
   date?: number | Date | CloseGateDateValueObject;
   gate?: string | GateIdValueObject;
+  description?: string;
   constructor(data?: CloseGateDomainEntity) {
     if (data?.id) this.id = data.id;
     else this.id = uuid();

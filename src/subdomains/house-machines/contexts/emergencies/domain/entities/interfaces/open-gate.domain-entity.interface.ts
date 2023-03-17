@@ -8,5 +8,6 @@ import { IGateDomainEntity } from './gate.domain-entity.interface';
 export interface IOpenGateDomainEntity {
   openGateId?: string | OpenGateIdValueObject;
   openDate?: Date | number | OpenGateDateValueObject;
+  description?: string;
   gatesOpen: GateDomainEntity;
 }

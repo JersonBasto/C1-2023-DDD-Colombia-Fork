@@ -12,4 +12,5 @@ export interface IGateDomainEntity {
   openGate?: IOpenGateDomainEntity[];
   closeGate?: ICloseGateDomainEntity[];
   gateId?: string | GateIdValueObject;
+  description?:string;
 }

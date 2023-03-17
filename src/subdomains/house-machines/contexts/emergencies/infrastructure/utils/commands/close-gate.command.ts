@@ -4,4 +4,6 @@ import { ICloseGateCommand } from "../../../domain/interfaces/commands/close-gat
 export class CloseGateCommand implements ICloseGateCommand{
     @IsString()
     id: string;
+    @IsString()
+    description: string;
 }

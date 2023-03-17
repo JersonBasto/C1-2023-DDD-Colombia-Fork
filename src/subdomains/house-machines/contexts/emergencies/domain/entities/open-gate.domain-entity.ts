@@ -10,6 +10,7 @@ export class OpenGateDomainEntity implements IOpenGateDomainEntity {
   id?: string | OpenGateIdValueObject;
   date?: number | Date | OpenGateDateValueObject;
   gatesOpen: GateDomainEntity;
+  description?: string;
   constructor(data?: OpenGateDomainEntity) {
     if (data?.date) this.date = data.date;
     if (data?.id) this.id = data.id;

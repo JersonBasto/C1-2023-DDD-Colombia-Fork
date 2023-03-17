@@ -1,4 +1,4 @@
 export interface ICloseGateCommand {
-    id: string;
-  }
-  
+  id: string;
+  description: string;
+}

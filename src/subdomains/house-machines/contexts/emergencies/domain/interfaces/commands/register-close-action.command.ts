@@ -3,5 +3,6 @@ import { GateEntity } from '../../../infrastructure/persistence/entities/gate-en
 export interface IRegisterCloseActionCommand {
   id?: string;
   date?: number | Date;
+  description: string;
   gatesClose: GateEntity;
 }

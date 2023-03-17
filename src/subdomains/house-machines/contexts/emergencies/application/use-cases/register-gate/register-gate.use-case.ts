@@ -18,6 +18,7 @@ import {
 import { RegisteredGateEventPublisher } from '../../../domain/events/publishers/registered-gate.event-publisher';
 import { IRegisterGateCommand } from '../../../domain/interfaces/commands/register-gate.command';
 import { IRegisteredGateResponse } from '../../../domain/interfaces/responses/registeres-gate.response';
+import { DescriptionValueObject } from '../../../domain/value-objects/gate/description/description.value-object';
 
 export class RegisterGateUseCase
   extends ValueObjectErrorHandler
@@ -42,13 +43,16 @@ export class RegisterGateUseCase
     command?: IRegisterGateCommand | undefined,
   ): Promise<IRegisteredGateResponse> {
     //Validaciones
-    console.log(command)
+    console.log(command);
     const emergency = new EmergencyValueObject(command?.emergency);
     const stateGate = new StateGateValueObject(command?.stateGate);
+    const description = new DescriptionValueObject(command?.description);
 
     //Captura de Errores
     if (emergency.hasErrors() === true) this.setErrors(emergency.getErrors());
     if (stateGate.hasErrors() === true) this.setErrors(stateGate.getErrors());
+    if (description.hasErrors() === true)
+      this.setErrors(description.getErrors());
 
     //Validar Errores
     if (this.hasErrors() === true) {
@@ -62,6 +66,7 @@ export class RegisterGateUseCase
     const entity = new GateDomainEntity();
     entity.emergency = emergency.valueOf();
     entity.stateGate = stateGate.valueOf();
+    entity.description = description.valueOf();
 
     //Retornar
     const result = await this.gateAggregate.registerGate(entity);
