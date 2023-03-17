@@ -18,7 +18,7 @@ export interface ICloseGateDomainService<
    * Es el metodo que se encarga de registrar la accion de CloseGate
    *
    * @param {CloseGateDomainEntity} data
-   * @return {*}  {Promise<Entity>}
+   * @return {Promise<Entity>}
    * @memberof ICloseGateDomainService
    */
   registerCloseAction(data: CloseGateDomainEntity): Promise<Entity>;
@@ -28,7 +28,7 @@ export interface ICloseGateDomainService<
    * Es el metodo encargado de obtener el historial completo
    * de todas las acciones de CloseGate
    *
-   * @return {*}  {Promise<Entity[]>}
+   * @return {Promise<Entity[]>}
    * @memberof ICloseGateDomainService
    */
   getHistoryCloseAction(): Promise<Entity[]>;
@@ -39,7 +39,7 @@ export interface ICloseGateDomainService<
    * a traves del ID
    *
    * @param {string} value
-   * @return {*}  {Promise<Entity>}
+   * @return {Promise<Entity>}
    * @memberof ICloseGateDomainService
    */
   getCloseGateById(value: string): Promise<Entity>;

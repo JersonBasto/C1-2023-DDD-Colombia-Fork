@@ -16,7 +16,7 @@ export interface IOpenGateDomainService<
    * Se encarga de registrar la accion de Abrir compuerta
    *
    * @param {OpenGateDomainEntity} data
-   * @return {*}  {Promise<Entity>}
+   * @return {Promise<Entity>}
    * @memberof IOpenGateDomainService
    */
   registerOpenAction(data: OpenGateDomainEntity): Promise<Entity>;
@@ -26,7 +26,7 @@ export interface IOpenGateDomainService<
    * Se encarga de obtener el historial de todos los items creados
    * al abrir la compuerta
    *
-   * @return {*}  {Promise<Entity[]>}
+   * @return {Promise<Entity[]>}
    * @memberof IOpenGateDomainService
    */
   getHistoryOpenAction(): Promise<Entity[]>;
@@ -36,7 +36,7 @@ export interface IOpenGateDomainService<
    * Se encarga de obtener un item OpenGate a traves del ID
    *
    * @param {string} value
-   * @return {*}  {Promise<Entity>}
+   * @return {Promise<Entity>}
    * @memberof IOpenGateDomainService
    */
   getOpenGateById(value: string): Promise<Entity>;
