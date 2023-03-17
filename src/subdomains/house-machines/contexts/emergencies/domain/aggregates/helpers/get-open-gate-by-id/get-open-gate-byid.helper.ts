@@ -2,6 +2,16 @@ import { AggregateRootException } from 'src/shared/sofka';
 import { GotOpenGateByIdEventPublisher } from '../../../events';
 import { IOpenGateDomainService } from '../../../services';
 
+/**
+ *
+ * Es el Helper que contiene la logica para un registro de abrir
+ * compuerta a traves del Id
+ *
+ * @param gateId
+ * @param openGateService
+ * @param gotOpenGateByIdEvent
+ * @returns answer
+ */
 export const GetOpenGateByIdHelper = async (
   gateId: string,
   openGateService: IOpenGateDomainService | undefined,

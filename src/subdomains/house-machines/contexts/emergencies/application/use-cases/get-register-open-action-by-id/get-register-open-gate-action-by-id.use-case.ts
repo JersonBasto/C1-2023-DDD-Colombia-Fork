@@ -14,6 +14,16 @@ import {
 import { IGetRegisterOpenGateActionCommand } from '../../../domain/interfaces/commands/get-open-gate-by-id.command';
 import { IGotRegisterOpenGateActionReponse } from '../../../domain/interfaces/responses/got-open-gate-by-id.response';
 
+/**
+ *
+ * Se crea el caso de uso para obtener el registro de abrir compuerta
+ * a traves del id
+ *
+ * @export
+ * @class GetRegisterOpenGateActionByIdUseCase
+ * @extends {ValueObjectErrorHandler}
+ * @implements {IUseCase<IGetRegisterOpenGateActionCommand, IGotRegisterOpenGateActionReponse>}
+ */
 export class GetRegisterOpenGateActionByIdUseCase
   extends ValueObjectErrorHandler
   implements
@@ -37,6 +47,15 @@ export class GetRegisterOpenGateActionByIdUseCase
       ),
     });
   }
+  /**
+   * 
+   * Ejecuta la accion de getOpenGateById del agregado Root
+   * 
+   * @param command 
+   * @returns state: true,
+      message: 'El registrado es: ',
+      data: answer,
+   */
   async execute(
     command?: IGetRegisterOpenGateActionCommand | undefined,
   ): Promise<IGotRegisterOpenGateActionReponse> {

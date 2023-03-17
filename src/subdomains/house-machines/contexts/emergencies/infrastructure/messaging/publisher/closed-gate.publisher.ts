@@ -6,6 +6,15 @@ import { ClosedGateEventPublisher } from '../../../domain';
 import { lastValueFrom } from 'rxjs';
 import { GateEntity } from '../../persistence/entities/gate-entity/gate-entity.entity';
 
+/**
+ *
+ * Es el evento publicador ClosedGatePublisher encargado de enviar el mensaje cuando
+ * se cierran las compuertas a traves de Kafka
+ *
+ * @export ClosedGatePublisher
+ * @class ClosedGatePublisher
+ * @extends {ClosedGateEventPublisher<GateEntity>}
+ */
 @Injectable()
 export class ClosedGatePublisher extends ClosedGateEventPublisher<GateEntity> {
   constructor(

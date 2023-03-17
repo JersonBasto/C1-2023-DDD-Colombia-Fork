@@ -7,6 +7,15 @@ import { IGateDomainEntity } from './interfaces/gate.domain-entity.interface';
 import { OpenGateDomainEntity } from './open-gate.domain-entity';
 import { v4 as uuid } from 'uuid';
 
+/**
+ *
+ * Se crea la entidad GateDomainEntity implementando la interfaz
+ * IGateDomainEntity para usar en los demas archivos
+ *
+ * @export GateDomainEntity
+ * @class GateDomainEntity
+ * @implements {IGateDomainEntity}
+ */
 export class GateDomainEntity implements IGateDomainEntity {
   emergency?: boolean | EmergencyValueObject | undefined;
   stateGate?: boolean | StateGateValueObject | undefined;
@@ -14,7 +23,7 @@ export class GateDomainEntity implements IGateDomainEntity {
   openGate?: OpenGateDomainEntity[];
   closeGate?: CloseGateDomainEntity[];
   gateId?: string | GateIdValueObject;
-  description?:string;
+  description?: string;
 
   constructor(data?: GateDomainEntity) {
     if (data?.gateId) this.gateId = data.gateId;

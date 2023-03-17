@@ -12,10 +12,24 @@ export class CloseGateDateValueObject extends ValueObjectBase<Date | number> {
   constructor(value: Date | number | undefined) {
     super(value);
   }
+
+  /**
+   *
+   * Se encarga de ejecutar los metodo para validar el value
+   *
+   * @memberof CloseGateDateValueObject
+   */
   validateData(): void {
     this.validateDate();
   }
 
+  /**
+   *
+   * Se encarga de realizar la validacion de que el dato sea un Date
+   *
+   * @private validateDate
+   * @memberof CloseGateDateValueObject
+   */
   private validateDate() {
     if (!IsDateNow(this.value)) {
       this.setError({

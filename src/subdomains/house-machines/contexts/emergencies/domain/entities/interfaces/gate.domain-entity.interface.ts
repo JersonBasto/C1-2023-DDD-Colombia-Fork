@@ -5,6 +5,14 @@ import { StateGateValueObject } from '../../value-objects/gate/state-gate/state-
 import { ICloseGateDomainEntity } from './close-gate.domain-entity.interface';
 import { IOpenGateDomainEntity } from './open-gate.domain-entity.interface';
 
+/**
+ *
+ * Se crea la interface para los datos dentro
+ * del item Gate
+ *
+ * @export IGateDomainEntity
+ * @interface IGateDomainEntity
+ */
 export interface IGateDomainEntity {
   emergency?: boolean | EmergencyValueObject;
   stateGate?: boolean | StateGateValueObject;
@@ -12,5 +20,5 @@ export interface IGateDomainEntity {
   openGate?: IOpenGateDomainEntity[];
   closeGate?: ICloseGateDomainEntity[];
   gateId?: string | GateIdValueObject;
-  description?:string;
+  description?: string;
 }

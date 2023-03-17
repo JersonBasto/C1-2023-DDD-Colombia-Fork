@@ -7,6 +7,14 @@ import {
 import { ValueObjectException } from 'src/shared/sofka/exceptions';
 import { Response } from 'express';
 
+/**
+ *
+ * Se captura el error y lo muestra sin necesidad de estallar el sistema
+ *
+ * @export ObjectValueExceptionFilter
+ * @class ObjectValueExceptionFilter
+ * @implements {ExceptionFilter<ValueObjectException>}
+ */
 @Catch(ValueObjectException)
 export class ObjectValueExceptionFilter
   implements ExceptionFilter<ValueObjectException>

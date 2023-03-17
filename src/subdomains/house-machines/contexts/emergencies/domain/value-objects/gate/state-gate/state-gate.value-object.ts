@@ -13,10 +13,23 @@ export class StateGateValueObject extends ValueObjectBase<boolean> {
     super(value);
   }
 
+  /**
+   *
+   * Ejecuta las validaciones del dato
+   *
+   * @memberof StateGateValueObject
+   */
   validateData(): void {
     this.validateContent();
   }
 
+  /**
+   *
+   * Valida que el dato entregado sea un Boolean
+   *
+   * @private validateContent
+   * @memberof StateGateValueObject
+   */
   private validateContent() {
     if (!IsBoolean(this.value)) {
       this.setError({

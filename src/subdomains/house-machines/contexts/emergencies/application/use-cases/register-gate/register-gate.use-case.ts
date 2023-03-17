@@ -20,6 +20,15 @@ import { IRegisterGateCommand } from '../../../domain/interfaces/commands/regist
 import { IRegisteredGateResponse } from '../../../domain/interfaces/responses/registeres-gate.response';
 import { DescriptionValueObject } from '../../../domain/value-objects/gate/description/description.value-object';
 
+/**
+ *
+ * Se crea el caso de uso para registrar el item de compuerta
+ *
+ * @export
+ * @class RegisterGateUseCase
+ * @extends {ValueObjectErrorHandler}
+ * @implements {IUseCase<IRegisterGateCommand, IRegisteredGateResponse>}
+ */
 export class RegisterGateUseCase
   extends ValueObjectErrorHandler
   implements IUseCase<IRegisterGateCommand, IRegisteredGateResponse>
@@ -39,6 +48,13 @@ export class RegisterGateUseCase
       ),
     });
   }
+  /**
+   *
+   * Ejecuta la accion de registerGate del agregado Root
+   *
+   * @param command
+   * @returns state: true, message: 'Se registrado la gate', data: result
+   */
   async execute(
     command?: IRegisterGateCommand | undefined,
   ): Promise<IRegisteredGateResponse> {

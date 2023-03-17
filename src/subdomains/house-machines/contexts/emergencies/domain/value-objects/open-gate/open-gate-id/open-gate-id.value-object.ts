@@ -13,9 +13,24 @@ export class OpenGateIdValueObject extends ValueObjectBase<string> {
   constructor(value?: string) {
     super(value ? value : uuid());
   }
+
+  /**
+   *
+   * Ejecuta las validaciones del dato
+   *
+   * @memberof OpenGateIdValueObject
+   */
   validateData(): void {
     this.validateStructure();
   }
+
+  /**
+   *
+   * Valida que el dato cumpla con ser un uuid
+   *
+   * @private validateStructure
+   * @memberof OpenGateIdValueObject
+   */
   private validateStructure(): void {
     if (this.value && IsUUID4(this.value) === false) {
       this.setError({

@@ -4,13 +4,18 @@ import {
   Entity,
   Index,
   JoinColumn,
-  JoinTable,
-  ManyToMany,
   ManyToOne,
-  OneToMany,
 } from 'typeorm';
 import { GateEntity } from '../gate-entity/gate-entity.entity';
 
+
+/**
+ *
+ * Se crea la entidad OpenGateEntity que va ser usada en la base de datos con TypeOrm
+ *
+ * @export OpenGateEntity
+ * @class OpenGateEntity
+ */
 @Index('open_gate_date_key', ['date'])
 @Index('open_gate_primary_key', ['id'], { unique: true })
 @Entity('open_gate', { schema: 'public' })

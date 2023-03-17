@@ -2,6 +2,15 @@ import { AggregateRootException } from 'src/shared/sofka';
 import { GotHistoryOpenActionEventPublisher } from '../../../events';
 import { IOpenGateDomainService } from '../../../services';
 
+/**
+ *
+ * Es el Helper que contiene la logica para obtener el historial
+ * de registro de abrir compuerta
+ *
+ * @param openGateService
+ * @param gotHistoryOpenActionEvent
+ * @returns answer
+ */
 export const GetHistoryOpenActionHelper = async (
   openGateService: IOpenGateDomainService | undefined,
   gotHistoryOpenActionEvent: GotHistoryOpenActionEventPublisher | undefined,

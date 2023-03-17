@@ -5,6 +5,15 @@ import { lastValueFrom } from 'rxjs';
 import { RegisteredGateEventPublisher } from '../../../domain/events/publishers/registered-gate.event-publisher';
 import { GateEntity } from '../../persistence/entities/gate-entity/gate-entity.entity';
 
+/**
+ *
+ * Es el evento publicador RegisteredGatePublisher encargado de enviar el mensaje cuando
+ * se registra la compuertas a traves de Kafka
+ *
+ * @export
+ * @class RegisteredGatePublisher
+ * @extends {RegisteredGateEventPublisher<GateEntity>}
+ */
 @Injectable()
 export class RegisteredGatePublisher extends RegisteredGateEventPublisher<GateEntity> {
   constructor(

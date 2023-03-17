@@ -14,6 +14,15 @@ import { GateAggregateRoot } from '../../../domain/aggregates/gate.aggregate';
 import { IOpenGateCommand } from '../../../domain/interfaces/commands/open-gate.command';
 import { IOpenGateResponse } from '../../../domain/interfaces/responses/opened-gate.response';
 
+/**
+ *
+ * Se crea el caso de uso de abrir la compuerta a traves del id
+ *
+ * @export
+ * @class OpenGatesUseCase
+ * @extends {ValueObjectErrorHandler}
+ * @implements {IUseCase<IOpenGateCommand, IOpenGateResponse>}
+ */
 export class OpenGatesUseCase
   extends ValueObjectErrorHandler
   implements IUseCase<IOpenGateCommand, IOpenGateResponse>
@@ -30,6 +39,15 @@ export class OpenGatesUseCase
       events: events.set(Topic.EmergenciesOpenedGate, this.openedGateEvent),
     });
   }
+  /**
+   * 
+   * Ejecuta el openGates del agregado Root
+   * 
+   * @param command 
+   * @returns status: true,
+      message: 'Se ha abierto la puerta',
+      data: result,
+   */
   async execute(
     command?: IOpenGateCommand | undefined,
   ): Promise<IOpenGateResponse> {

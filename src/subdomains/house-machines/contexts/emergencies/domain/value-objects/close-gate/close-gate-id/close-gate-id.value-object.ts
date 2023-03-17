@@ -13,9 +13,24 @@ export class CloseGateIdValueObject extends ValueObjectBase<string> {
   constructor(value?: string) {
     super(value ? value : uuid());
   }
+
+  /**
+   *
+   * Se encarga de ejecutar los metodo para validar el value
+   *
+   * @memberof CloseGateIdValueObject
+   */
   validateData(): void {
     this.validateStructure();
   }
+
+  /**
+   *
+   * Se encarga de validar que el valor entregado sea un uuid
+   *
+   * @private validateStructure
+   * @memberof CloseGateIdValueObject
+   */
   private validateStructure(): void {
     if (this.value && IsUUID4(this.value) === false) {
       this.setError({

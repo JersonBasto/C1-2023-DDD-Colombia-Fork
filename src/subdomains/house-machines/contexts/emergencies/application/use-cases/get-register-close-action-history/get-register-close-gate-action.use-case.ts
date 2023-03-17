@@ -12,10 +12,17 @@ import {
   Topic,
 } from '../../../domain';
 import { IGetHistoryCloseActionCommand } from '../../../domain/interfaces/commands/get-history-close-action.command';
-import { IGetRegisterOpenGateActionCommand } from '../../../domain/interfaces/commands/get-open-gate-by-id.command';
 import { IGotHistoryCloseActionResponse } from '../../../domain/interfaces/responses/got-history-close-action.response';
-import { IGotRegisterOpenGateActionReponse } from '../../../domain/interfaces/responses/got-open-gate-by-id.response';
 
+/**
+ *
+ * Se crea el caso de uso para obtener todos los registros de la accion de cerrar compuerta
+ *
+ * @export
+ * @class GetRegisterCloseGateActionUseCase
+ * @extends {ValueObjectErrorHandler}
+ * @implements {IUseCase<IGetHistoryCloseActionCommand, IGotHistoryCloseActionResponse>}
+ */
 export class GetRegisterCloseGateActionUseCase
   extends ValueObjectErrorHandler
   implements
@@ -33,11 +40,18 @@ export class GetRegisterCloseGateActionUseCase
       events: (this.events = new Map<Topic, EventPublisherBase<any>>()),
     });
   }
+  /**
+   * Ejecuta la accion del agregado Root getHistoryCloseAction
+   * 
+   * @param command 
+   * @returns state: true,
+      message: 'El registrado es: ',
+      data: answer,
+   */
   async execute(
     command?: IGetHistoryCloseActionCommand | undefined,
   ): Promise<IGotHistoryCloseActionResponse> {
     //Validaciones
-
     //Captura de Errores
     //Validar Errores
     if (this.hasErrors() === true) {

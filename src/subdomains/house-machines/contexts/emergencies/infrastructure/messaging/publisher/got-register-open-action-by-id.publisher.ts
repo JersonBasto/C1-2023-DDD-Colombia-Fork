@@ -6,6 +6,15 @@ import { GotOpenGateByIdEventPublisher } from '../../../domain/events/publishers
 import { OpenGateEntity } from '../../persistence/entities/open-gate-entity/open-gate.entity';
 import { lastValueFrom } from 'rxjs';
 
+/**
+ *
+ * Es el evento publicador GotRegisterOpenGatePublisher encargado de enviar el mensaje cuando
+ * se registra la accion de abrir la compuertas a traves de Kafka
+ *
+ * @export GotRegisterOpenGatePublisher
+ * @class GotRegisterOpenGatePublisher
+ * @extends {GotOpenGateByIdEventPublisher<OpenGateEntity>}
+ */
 @Injectable()
 export class GotRegisterOpenGatePublisher extends GotOpenGateByIdEventPublisher<OpenGateEntity> {
   constructor(

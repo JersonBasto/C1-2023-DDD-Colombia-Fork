@@ -8,12 +8,39 @@ import { GateEntity } from '../entities/gate-entity/gate-entity.entity';
 import { GateRepository } from '../repositories/gate-repository/gate.repository';
 import * as moment from 'moment';
 
+/**
+ *
+ * El GateService es un servicio encargado de la logica que los repositorios no
+ * pueden hacer
+ *
+ * @export GateService
+ * @class GateService
+ * @implements {IGateDomainService<GateEntity>}
+ */
 @Injectable()
 export class GateService implements IGateDomainService<GateEntity> {
   constructor(private readonly gateRepository: GateRepository) {}
+
+  /**
+   *
+   * Se encarga de registrar un item de GateEntity
+   *
+   * @param {GateEntity} entity
+   * @return {Promise<GateEntity>}
+   * @memberof GateService
+   */
   async registerGate(entity: GateEntity): Promise<GateEntity> {
     return await this.gateRepository.create(entity);
   }
+
+  /**
+   *
+   * Se encarga de abrir una compuerta a traves del id
+   *
+   * @param {string} gateId
+   * @return {Promise<GateEntity>}
+   * @memberof GateService
+   */
   async openGates(gateId: string): Promise<GateEntity> {
     const data = await this.gateRepository.findOne(gateId);
     if (data.emergency && data.stateGate) {
@@ -26,6 +53,15 @@ export class GateService implements IGateDomainService<GateEntity> {
       'No se puede abrir la puerta, no cumple condiciones',
     );
   }
+
+  /**
+   *
+   * Se encarga de cerrar una compuerta a traves del id
+   *
+   * @param {string} gateId
+   * @return {Promise<GateEntity>}
+   * @memberof GateService
+   */
   async closeGates(gateId: string): Promise<GateEntity> {
     const data = await this.gateRepository.findOne(gateId);
     if (data.emergency === false && data.stateGate === false) {
@@ -38,6 +74,16 @@ export class GateService implements IGateDomainService<GateEntity> {
       'No se puede cerrar la puerta, no cumple condiciones',
     );
   }
+
+  /**
+   *
+   * Se encarga de cambiar el estado de la compuerta
+   *
+   * @param {string} gateId
+   * @param {boolean} value
+   * @return {Promise<boolean>}
+   * @memberof GateService
+   */
   async changeStateGate(gateId: string, value: boolean): Promise<boolean> {
     const data = await this.gateRepository.findOne(gateId);
     if (data) {
@@ -47,6 +93,16 @@ export class GateService implements IGateDomainService<GateEntity> {
     }
     return false;
   }
+
+  /**
+   *
+   * Se encarga de cambiar el estado de emergencia de la compuerta
+   *
+   * @param {string} gateId
+   * @param {boolean} value
+   * @return {Promise<boolean>}
+   * @memberof GateService
+   */
   async changeStateEmergency(gateId: string, value: boolean): Promise<boolean> {
     const data = await this.gateRepository.findOne(gateId);
     if (data) {
@@ -56,6 +112,15 @@ export class GateService implements IGateDomainService<GateEntity> {
     }
     return false;
   }
+
+  /**
+   *
+   * Se encarga de obtener un item de GateEntity a traves del id
+   *
+   * @param {string} gateId
+   * @return {Promise<GateEntity>}
+   * @memberof GateService
+   */
   async getGateById(gateId: string): Promise<GateEntity> {
     const data = await this.gateRepository.findOne(gateId);
     if (data) return data;

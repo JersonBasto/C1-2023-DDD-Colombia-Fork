@@ -14,10 +14,23 @@ export class GateIdValueObject extends ValueObjectBase<string> {
     super(value ? value : uuid());
   }
 
+  /**
+   *
+   * Ejecuta las validaciones del dato
+   *
+   * @memberof GateIdValueObject
+   */
   validateData(): void {
     this.validateStructure();
   }
-  
+
+  /**
+   *
+   * Valida que el dato entregado cumpla con ser un uuid
+   *
+   * @private validateStructure
+   * @memberof GateIdValueObject
+   */
   private validateStructure(): void {
     if (this.value && IsUUID4(this.value) === false) {
       this.setError({

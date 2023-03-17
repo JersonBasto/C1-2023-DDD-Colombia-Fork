@@ -14,10 +14,23 @@ export class DescriptionValueObject extends ValueObjectBase<string> {
     super(value);
   }
 
+  /**
+   *
+   * Ejecuta las validaciones al dato
+   *
+   * @memberof DescriptionValueObject
+   */
   validateData(): void {
     this.validateStructure();
   }
 
+  /**
+   *
+   * Valida que el dato cumpla con la longitud requerida
+   *
+   * @private
+   * @memberof DescriptionValueObject
+   */
   private validateStructure(): void {
     if (!IsDescriptionLength(this.value)) {
       this.setError({

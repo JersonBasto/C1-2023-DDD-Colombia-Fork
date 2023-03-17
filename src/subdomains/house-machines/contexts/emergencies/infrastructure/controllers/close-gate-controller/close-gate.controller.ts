@@ -1,13 +1,19 @@
 import { Controller, Get } from '@nestjs/common';
 import { Body, Param, Post } from '@nestjs/common/decorators';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { ICloseGateCommand } from '../../../domain/interfaces/commands/close-gate.command';
 import { IRegisterCloseActionCommand } from '../../../domain/interfaces/commands/register-close-action.command';
 import { BadRequestSwagger } from '../../../swagger/bad-request.swagger';
 import { IndexCloseGateActionSwagger } from '../../../swagger/index-close-gate.swagger';
 import { CloseGateEntity } from '../../persistence/entities/close-gate-entity/close-gate.entity';
 import { CloseGateService } from '../../persistence/servicies/close-gate.service';
 
+/**
+ *
+ * Se crea el controlador para las acciones del servicio de CloseGateService
+ *
+ * @export CloseGateController
+ * @class CloseGateController
+ */
 @Controller('close-gate')
 @ApiTags('CloseGateAction')
 export class CloseGateController {
@@ -26,7 +32,10 @@ export class CloseGateController {
     description: 'Ha ocurrido un error',
     type: BadRequestSwagger,
   })
-  @ApiResponse({ status: 404, description: 'Item CloseGateAction no encotrado' })
+  @ApiResponse({
+    status: 404,
+    description: 'Item CloseGateAction no encotrado',
+  })
   findById(@Param() id: { gateId: string }): Promise<CloseGateEntity> {
     return this.closeGateService.getCloseGateById(id.gateId);
   }
@@ -44,7 +53,10 @@ export class CloseGateController {
     description: 'Ha ocurrido un error',
     type: BadRequestSwagger,
   })
-  @ApiResponse({ status: 404, description: 'Item CloseGateAction no encotrado' })
+  @ApiResponse({
+    status: 404,
+    description: 'Item CloseGateAction no encotrado',
+  })
   findAll(): Promise<CloseGateEntity[]> {
     return this.closeGateService.getHistoryCloseAction();
   }

@@ -2,8 +2,16 @@ import { AggregateRootException } from 'src/shared/sofka';
 import { GotHistoryCloseActionEventPublisher } from '../../../events';
 import { ICloseGateDomainService } from '../../../services';
 
+/**
+ * Es el Helper encargado de la logica para obtener todos los registros
+ * de cerrar compuertas
+ *
+ * @param closeGateService
+ * @param gotHistoryCloseActionEvent
+ * @returns answer
+ */
 export const GetHistoryCloseActionHelper = async (
-  closeGateService: ICloseGateDomainService |undefined,
+  closeGateService: ICloseGateDomainService | undefined,
   gotHistoryCloseActionEvent: GotHistoryCloseActionEventPublisher | undefined,
 ) => {
   if (!closeGateService) {

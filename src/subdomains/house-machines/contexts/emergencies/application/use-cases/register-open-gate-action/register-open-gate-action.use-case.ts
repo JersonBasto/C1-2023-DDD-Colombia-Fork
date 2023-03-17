@@ -19,6 +19,15 @@ import { IRegisterOpenActionCommand } from '../../../domain/interfaces/commands/
 import { IRegisteredOpenACtionResponse } from '../../../domain/interfaces/responses/registered-open-action.response';
 import { OpenGateDescriptionValueObject } from '../../../domain/value-objects/open-gate/open-date-description/open-gate-description.value-object';
 
+/**
+ *
+ * Se crea el caso de uso para registrar la accion de abrir compuerta
+ *
+ * @export
+ * @class RegisterOpenGateActionUseCase
+ * @extends {ValueObjectErrorHandler}
+ * @implements {IUseCase<IRegisterOpenActionCommand, IRegisteredOpenACtionResponse>}
+ */
 export class RegisterOpenGateActionUseCase
   extends ValueObjectErrorHandler
   implements
@@ -39,6 +48,13 @@ export class RegisterOpenGateActionUseCase
       ),
     });
   }
+  /**
+   *
+   * Ejecuta la accion registerOpenAction del agregado Root
+   *
+   * @param command
+   * @returns state: true, message: 'Se registrado la accion', data: result
+   */
   async execute(
     command?: IRegisterOpenActionCommand | undefined,
   ): Promise<IRegisteredOpenACtionResponse> {

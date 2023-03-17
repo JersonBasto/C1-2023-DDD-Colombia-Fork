@@ -6,6 +6,15 @@ import { OpenedGateEventPublisher } from '../../../domain';
 import { lastValueFrom } from 'rxjs';
 import { GateEntity } from '../../persistence/entities/gate-entity/gate-entity.entity';
 
+/**
+ *
+ * Es el evento publicador OpenedGatePublisher encargado de enviar el mensaje cuando
+ * se abre las compuertas a traves de Kafka
+ *
+ * @export OpenedGatePublisher
+ * @class OpenedGatePublisher
+ * @extends {OpenedGateEventPublisher<GateEntity>}
+ */
 @Injectable()
 export class OpenedGatePublisher extends OpenedGateEventPublisher<GateEntity> {
   constructor(

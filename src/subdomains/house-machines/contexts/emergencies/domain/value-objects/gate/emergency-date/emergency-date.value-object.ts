@@ -13,10 +13,23 @@ export class EmergencyDateValueObject extends ValueObjectBase<Date | number> {
     super(value);
   }
 
+  /**
+   *
+   * Ejecuta las validaciones del dato
+   *
+   * @memberof EmergencyDateValueObject
+   */
   validateData(): void {
     this.validateDateNow();
   }
 
+  /**
+   *
+   * Valida que el dato entregado sea un Date valido
+   *
+   * @private
+   * @memberof EmergencyDateValueObject
+   */
   private validateDateNow() {
     if (!IsDateNow(this.value)) {
       this.setError({

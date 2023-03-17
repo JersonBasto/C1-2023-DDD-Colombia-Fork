@@ -15,6 +15,13 @@ import { OpenGateService } from '../../persistence/servicies/open-gate.service';
 import { GetRegisterOpenGateActionCommand } from '../../utils/commands/get-register-open-gate-action.command';
 import { RegisterOpenActionCommand } from '../../utils/commands/register-open-action.command';
 
+/**
+ *
+ * Se crea el controlador para las acciones del servicio de OpenGateService
+ *
+ * @export
+ * @class OpenGateController
+ */
 @Controller('open-gate')
 @ApiTags('OpenGateAction')
 export class OpenGateController {

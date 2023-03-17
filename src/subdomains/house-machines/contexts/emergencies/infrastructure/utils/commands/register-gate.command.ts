@@ -3,6 +3,15 @@ import { ApiPropertyOptional } from '@nestjs/swagger/dist/decorators';
 import { IsBoolean, IsString } from 'class-validator';
 import { IRegisterGateCommand } from '../../../domain/interfaces/commands/register-gate.command';
 
+/**
+ *
+ * Se crea el comando para asegurar la entrada de datos para registrar
+ * una compuerta
+ *
+ * @export RegisterGateCommand
+ * @class RegisterGateCommand
+ * @implements {IRegisterGateCommand}
+ */
 export class RegisterGateCommand implements IRegisterGateCommand {
   @IsBoolean()
   @ApiProperty()
@@ -11,7 +20,7 @@ export class RegisterGateCommand implements IRegisterGateCommand {
   @ApiProperty()
   stateGate: boolean;
   @IsString()
-  @ApiProperty({default:"La compuerta Norte ha sido registrada"})
+  @ApiProperty({ default: 'La compuerta Norte ha sido registrada' })
   description: string;
   @ApiPropertyOptional()
   emergencyDate?: number | Date | undefined;

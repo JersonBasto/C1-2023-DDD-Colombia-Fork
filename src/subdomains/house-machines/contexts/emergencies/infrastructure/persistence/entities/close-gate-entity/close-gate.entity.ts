@@ -2,6 +2,13 @@ import { ApiProperty } from '@nestjs/swagger';
 import { Column, Entity, Index, JoinColumn, ManyToOne } from 'typeorm';
 import { GateEntity } from '../gate-entity/gate-entity.entity';
 
+/**
+ *
+ * Se crea la entidad CloseGateEntity que va ser usada en la base de datos con TypeOrm
+ *
+ * @export CloseGateEntity
+ * @class CloseGateEntity
+ */
 @Index('close_gate_date_key', ['date'])
 @Index('close_gate_primary_key', ['id'], { unique: true })
 @Entity('close_gate', { schema: 'public' })
@@ -13,7 +20,7 @@ export class CloseGateEntity {
   })
   @ApiProperty()
   id?: string;
-  
+
   @Column('date', {
     default: () => 'CURRENT_DATE',
   })

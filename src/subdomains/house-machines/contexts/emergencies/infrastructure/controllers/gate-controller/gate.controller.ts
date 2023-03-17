@@ -18,6 +18,14 @@ import { GetGateByIdCommand } from '../../utils/commands/get-gate-by-id.command'
 import { OpenGateCommand } from '../../utils/commands/open-gate.command';
 import { RegisterGateCommand } from '../../utils/commands/register-gate.command';
 
+
+/**
+ *
+ * Se crea el controlador para las acciones del servicio de GateService
+ *
+ * @export GateController
+ * @class GateController
+ */
 @Controller('gate')
 @ApiTags('Gate')
 export class GateController {

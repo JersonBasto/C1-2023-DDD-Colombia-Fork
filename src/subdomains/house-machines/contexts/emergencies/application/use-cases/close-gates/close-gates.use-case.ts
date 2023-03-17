@@ -12,10 +12,16 @@ import {
 } from '../../../domain';
 import { GateAggregateRoot } from '../../../domain/aggregates/gate.aggregate';
 import { ICloseGateCommand } from '../../../domain/interfaces/commands/close-gate.command';
-import { IOpenGateCommand } from '../../../domain/interfaces/commands/open-gate.command';
 import { ICloseGateResponse } from '../../../domain/interfaces/responses/closed-gate.response';
-import { IOpenGateResponse } from '../../../domain/interfaces/responses/opened-gate.response';
 
+/**
+ * Caso de Uso para Cerrar Compuertas
+ *
+ * @export
+ * @class CloseGatesUseCase
+ * @extends {ValueObjectErrorHandler}
+ * @implements {IUseCase<ICloseGateCommand, ICloseGateResponse>}
+ */
 export class CloseGatesUseCase
   extends ValueObjectErrorHandler
   implements IUseCase<ICloseGateCommand, ICloseGateResponse>
@@ -35,6 +41,13 @@ export class CloseGatesUseCase
       ),
     });
   }
+  /**
+   *
+   * Ejecuta la accion del agregador Root closeGates
+   *
+   * @param command
+   * @returns status: true, message: 'Se ha cerrado la puerta:', data: result
+   */
   async execute(
     command?: ICloseGateCommand | undefined,
   ): Promise<ICloseGateResponse> {

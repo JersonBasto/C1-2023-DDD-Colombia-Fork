@@ -1,14 +1,23 @@
 import { AggregateRootException } from 'src/shared/sofka';
 import { GateDomainEntity } from '../../../entities/gate.domain-entity';
-import { OpenGateDomainEntity } from '../../../entities/open-gate.domain-entity';
 import { OpenedGateEventPublisher } from '../../../events/publishers/opened-gate.event-publisher';
 import { IGateDomainService } from '../../../services/gate.domain-service';
-import { IOpenGateDomainService } from '../../../services/open-gate.domain-service';
 
+/**
+ *
+ * Es el Helper que contiene la logica para abrir la compuerta a traves de un ID
+ *
+ * @param gateId
+ * @param gateService
+ * @param OpenedGateEventPublisher
+ * @returns answer
+ */
 export const OpenGateHelper = async (
   gateId: string,
   gateService: IGateDomainService | undefined,
-  OpenedGateEventPublisher: OpenedGateEventPublisher<GateDomainEntity> | undefined,
+  OpenedGateEventPublisher:
+    | OpenedGateEventPublisher<GateDomainEntity>
+    | undefined,
 ) => {
   if (!OpenedGateEventPublisher) {
     throw new AggregateRootException(

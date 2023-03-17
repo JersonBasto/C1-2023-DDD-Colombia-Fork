@@ -16,6 +16,15 @@ import {
 import { IRegisterCloseActionCommand } from '../../../domain/interfaces/commands/register-close-action.command';
 import { IRegisteredCloseACtionResponse } from '../../../domain/interfaces/responses/registered-close-action.response';
 
+/**
+ *
+ * Se crea el caso de uso para registrar la accion de cerrar compuerta
+ *
+ * @export
+ * @class RegisterCloseGateActionUseCase
+ * @extends {ValueObjectErrorHandler}
+ * @implements {IUseCase<IRegisterCloseActionCommand, IRegisteredCloseACtionResponse>}
+ */
 export class RegisterCloseGateActionUseCase
   extends ValueObjectErrorHandler
   implements
@@ -32,6 +41,12 @@ export class RegisterCloseGateActionUseCase
       events: (this.events = new Map<Topic, EventPublisherBase<any>>()),
     });
   }
+  /**
+   * Ejecuta la accion de registerCloseAction del agregado Root
+   *
+   * @param command
+   * @returns state: true, message: 'Se registrado la accion', data: result
+   */
   async execute(
     command?: IRegisterCloseActionCommand | undefined,
   ): Promise<IRegisteredCloseACtionResponse> {

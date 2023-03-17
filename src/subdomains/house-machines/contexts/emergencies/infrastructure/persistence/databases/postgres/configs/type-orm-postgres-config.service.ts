@@ -5,6 +5,14 @@ import { CloseGateEntity } from '../../../entities/close-gate-entity/close-gate.
 import { GateEntity } from '../../../entities/gate-entity/gate-entity.entity';
 import { OpenGateEntity } from '../../../entities/open-gate-entity/open-gate.entity';
 
+/**
+ *
+ * Contiene la configuracion para conectarse a la Base de datos
+ *
+ * @export TypeOrmPostgresConfigService
+ * @class TypeOrmPostgresConfigService
+ * @implements {TypeOrmOptionsFactory}
+ */
 @Injectable()
 export class TypeOrmPostgresConfigService implements TypeOrmOptionsFactory {
   constructor(private readonly configService: ConfigService) {}

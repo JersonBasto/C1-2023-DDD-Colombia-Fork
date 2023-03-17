@@ -14,10 +14,23 @@ export class OpenGateDescriptionValueObject extends ValueObjectBase<string> {
     super(value);
   }
 
+  /**
+   *
+   * Ejecuta las validaciones al dato
+   *
+   * @memberof OpenGateDescriptionValueObject
+   */
   validateData(): void {
     this.validateStructure();
   }
 
+  /**
+   *
+   * Valida que el dato cumpla con la longitud necesaria
+   *
+   * @private
+   * @memberof OpenGateDescriptionValueObject
+   */
   private validateStructure(): void {
     if (!IsDescriptionLength(this.value)) {
       this.setError({

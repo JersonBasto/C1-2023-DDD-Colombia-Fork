@@ -1,3 +1,10 @@
+/**
+ *
+ * Contiene una lista con todos los eventos publicadores
+ *
+ * @export Topic
+ * @enum {number}
+ */
 export enum Topic {
   EmergenciesChangedStateEmergency = 'emergencies.changedStateEmergency',
   EmergenciesChangedStategate = 'emergencies.changedStateGate',

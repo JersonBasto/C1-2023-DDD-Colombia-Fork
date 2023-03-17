@@ -3,6 +3,15 @@ import { CloseGateDomainEntity } from '../../../entities';
 import { RegisteredCloseActionEventPublisher } from '../../../events';
 import { ICloseGateDomainService } from '../../../services';
 
+/**
+ *
+ * Es el Helper encargado de registrar el cierre de una compuerta
+ *
+ * @param data
+ * @param closeGateService
+ * @param registeredCloseActionEvent
+ * @returns answer
+ */
 export const RegisterCloseActionHelper = async (
   data: CloseGateDomainEntity,
   closeGateService: ICloseGateDomainService | undefined,

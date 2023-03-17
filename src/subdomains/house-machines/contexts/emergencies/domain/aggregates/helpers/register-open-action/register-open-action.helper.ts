@@ -3,6 +3,16 @@ import { OpenGateDomainEntity } from '../../../entities';
 import { RegisteredOpenedActionEventPublisher } from '../../../events';
 import { IOpenGateDomainService } from '../../../services';
 
+/**
+ *
+ * Es el Helper que contiene la logica para registrar la accion de abrir
+ * compuerta
+ *
+ * @param data
+ * @param openGateService
+ * @param registeredOpenActionEvent
+ * @returns answer
+ */
 export const RegisterOpenActionHelper = async (
   data: OpenGateDomainEntity,
   openGateService?: IOpenGateDomainService,

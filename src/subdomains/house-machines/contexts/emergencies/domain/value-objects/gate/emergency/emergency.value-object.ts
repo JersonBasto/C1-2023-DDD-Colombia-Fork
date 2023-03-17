@@ -13,10 +13,23 @@ export class EmergencyValueObject extends ValueObjectBase<boolean> {
     super(value);
   }
 
+  /**
+   *
+   * Ejecuta las validaciones al dato
+   *
+   * @memberof EmergencyValueObject
+   */
   validateData(): void {
     this.validateContent();
   }
 
+  /**
+   *
+   * Valida que el dato entregado sea Booleano
+   *
+   * @private validateContent
+   * @memberof EmergencyValueObject
+   */
   private validateContent() {
     if (!IsBoolean(this.value)) {
       this.setError({

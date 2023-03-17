@@ -3,9 +3,17 @@ import { OpenGateIdValueObject } from '../value-objects/open-gate/open-gate-id/o
 import { GateDomainEntity } from './gate.domain-entity';
 import { IOpenGateDomainEntity } from './interfaces/open-gate.domain-entity.interface';
 import { v4 as uuid } from 'uuid';
-import { GateIdValueObject } from '../value-objects';
-import { GateEntity } from '../../infrastructure/persistence/entities/gate-entity/gate-entity.entity';
 
+
+/**
+ * 
+ * Se crea la entidad OpenGateDomainEntity implementando la interfaz
+ * IOpenGateDomainEntity para usar en los demas archivos
+ *
+ * @export OpenGateDomainEntity
+ * @class OpenGateDomainEntity
+ * @implements {IOpenGateDomainEntity}
+ */
 export class OpenGateDomainEntity implements IOpenGateDomainEntity {
   id?: string | OpenGateIdValueObject;
   date?: number | Date | OpenGateDateValueObject;
