@@ -17,6 +17,9 @@ export abstract class ClosedGateEventPublisher<
   Response = GateDomainEntity,
 > extends EventPublisherBase<Response> {
   publish<Result = any>(): Promise<Result> {
-    return this.emit(Topic.EmergenciesClosedGate, JSON.stringify(this.response));
+    return this.emit(
+      Topic.EmergenciesClosedGate,
+      JSON.stringify(this.response),
+    );
   }
 }

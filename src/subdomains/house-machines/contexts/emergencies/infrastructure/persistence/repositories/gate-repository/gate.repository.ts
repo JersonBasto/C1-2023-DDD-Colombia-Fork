@@ -90,7 +90,7 @@ export class GateRepository implements IBase<GateEntity> {
    * @memberof GateRepository
    */
   async findOne(id: string): Promise<GateEntity> {
-    const data = await this.gateRepository.findOneBy({ id:id });
+    const data = await this.gateRepository.findOneBy({ id: id });
     if (data) return data;
     throw new NotFoundException('No se encontro Data con el Id');
   }

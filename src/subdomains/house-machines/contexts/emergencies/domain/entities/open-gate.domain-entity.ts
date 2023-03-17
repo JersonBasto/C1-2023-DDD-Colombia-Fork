@@ -4,9 +4,8 @@ import { GateDomainEntity } from './gate.domain-entity';
 import { IOpenGateDomainEntity } from './interfaces/open-gate.domain-entity.interface';
 import { v4 as uuid } from 'uuid';
 
-
 /**
- * 
+ *
  * Se crea la entidad OpenGateDomainEntity implementando la interfaz
  * IOpenGateDomainEntity para usar en los demas archivos
  *

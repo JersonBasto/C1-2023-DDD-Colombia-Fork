@@ -1,6 +1,6 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { IsString } from "class-validator";
-import { ICloseGateCommand } from "../../../domain/interfaces/commands/close-gate.command";
+import { ApiProperty } from '@nestjs/swagger';
+import { IsString } from 'class-validator';
+import { ICloseGateCommand } from '../../../domain/interfaces/commands/close-gate.command';
 
 /**
  *
@@ -10,8 +10,8 @@ import { ICloseGateCommand } from "../../../domain/interfaces/commands/close-gat
  * @class CloseGateCommand
  * @implements {ICloseGateCommand}
  */
-export class CloseGateCommand implements ICloseGateCommand{
-    @IsString()
-    @ApiProperty()
-    id: string;
+export class CloseGateCommand implements ICloseGateCommand {
+  @IsString()
+  @ApiProperty()
+  id: string;
 }

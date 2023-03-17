@@ -13,7 +13,7 @@ import { OpenGateEntity } from '../open-gate-entity/open-gate.entity';
  */
 @Index('gate_primary_key', ['id'], { unique: true })
 @Entity('gate', { schema: 'public' })
-export class GateEntity extends GateDomainEntity{
+export class GateEntity extends GateDomainEntity {
   @Column('uuid', {
     primary: true,
     name: 'gate_id',
@@ -37,7 +37,7 @@ export class GateEntity extends GateDomainEntity{
   emergency: boolean;
 
   @Column('text', {
-    name: 'description'
+    name: 'description',
   })
   @ApiProperty()
   description?: string;

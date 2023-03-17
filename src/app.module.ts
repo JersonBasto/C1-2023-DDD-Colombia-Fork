@@ -16,11 +16,9 @@ import { PostgersSQLModule } from './subdomains/house-machines/contexts/emergenc
       ),
     }),
     PostgersSQLModule,
-    EmergenciesModule
+    EmergenciesModule,
   ],
-  controllers: [
-    AppController
-  ],
+  controllers: [AppController],
   providers: [],
 })
 export class AppModule {}

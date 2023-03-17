@@ -61,7 +61,7 @@ export interface IGateDomainService<
    * @memberof IGateDomainService
    */
   getGateById(value: string): Promise<Entity>;
-  
+
   /**
    * Se encarga de registrar el item de Gate
    *

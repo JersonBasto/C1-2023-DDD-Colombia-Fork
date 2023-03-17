@@ -22,9 +22,9 @@ export class CloseGateEntity extends CloseGateDomainEntity {
   @ApiProperty()
   id?: string;
 
-  @Column("text")
-  @ApiProperty({default:"La compuerta 1 se ha cerrado por emergencia"})
-  description:string
+  @Column('text')
+  @ApiProperty({ default: 'La compuerta 1 se ha cerrado por emergencia' })
+  description: string;
 
   @Column({
     type: 'timestamptz',

@@ -1,5 +1,4 @@
-import { CloseGateDateValueObject } from "@emergencies/domain/index";
-
+import { CloseGateDateValueObject } from '@emergencies/domain';
 
 describe('dateValueObject', () => {
   let dateValueObject: CloseGateDateValueObject;
@@ -18,7 +17,7 @@ describe('dateValueObject', () => {
       //Act
       const dateValueObject = new CloseGateDateValueObject(date);
       const result = dateValueObject.hasErrors();
-      console.log(result)
+      console.log(result);
       //Assert
       expect(result).toBe(expected);
     });

@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
 export class TurbineData {
   constructor(private readonly httpService: HttpService) {}
   async dataTurbine(): Promise<AxiosResponse<any>> {
-    return await this.httpService.axiosRef.get('http://localhost:3001/turbine/all-turbine');
+    return await this.httpService.axiosRef.get(
+      'http://localhost:3001/turbine/all-turbine',
+    );
   }
 }

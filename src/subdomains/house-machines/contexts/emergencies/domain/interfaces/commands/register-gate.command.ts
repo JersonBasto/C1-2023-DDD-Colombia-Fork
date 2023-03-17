@@ -1,4 +1,3 @@
-
 /**
  *
  * Se crea la interfaz IRegisterGateCommand encargada de asegurar que los datos

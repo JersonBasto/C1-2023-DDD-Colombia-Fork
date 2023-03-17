@@ -1,2 +1,1 @@
-export interface IGetHistoryCloseActionCommand{   
-}
+export interface IGetHistoryCloseActionCommand {}

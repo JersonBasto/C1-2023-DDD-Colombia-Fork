@@ -17,8 +17,8 @@ export class AppController {
     private readonly gateService: GateService,
   ) {}
   @Get(':id')
-  getAll(@Param() id:{id: string}): Promise<GateEntity> {
-    console.log(id.id)
+  getAll(@Param() id: { id: string }): Promise<GateEntity> {
+    console.log(id.id);
     return this.gateService.getGateById(id.id);
   }
   @Post()
