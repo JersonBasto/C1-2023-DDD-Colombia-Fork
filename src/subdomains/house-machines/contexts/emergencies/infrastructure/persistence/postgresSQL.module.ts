@@ -27,9 +27,12 @@ import { JwtService } from '@nestjs/jwt';
 import { RegisteredCloseGatePublisher } from '../messaging/publisher/registered-close-gate-action.publisher';
 import { AggregateRootExceptionFilter } from '../utils/exception-filters/agregate-root.exception-filter';
 import { InternalServerErrorExceptionFilter } from '../utils/exception-filters/data-base.exception-filter';
+import { HttpModule } from '@nestjs/axios/dist';
+import { TurbineData } from '../external-api/data-turbine.external-api';
 
 @Module({
   imports: [
+    HttpModule,
     TypeOrmModule.forRootAsync({
       useClass: TypeOrmPostgresConfigService,
     }),
@@ -64,6 +67,7 @@ import { InternalServerErrorExceptionFilter } from '../utils/exception-filters/d
     JwtGuard,
     JwtService,
     RegisteredCloseGatePublisher,
+    TurbineData,
     {
       provide: APP_FILTER,
       useClass: ObjectValueExceptionFilter,

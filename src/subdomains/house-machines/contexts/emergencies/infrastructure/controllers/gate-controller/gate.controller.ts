@@ -1,3 +1,4 @@
+import { HttpService } from '@nestjs/axios';
 import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger/dist';
 import { OpenGatesUseCase } from '../../../application/use-cases';
@@ -8,6 +9,7 @@ import { IOpenGateResponse } from '../../../domain/interfaces/responses/opened-g
 import { IRegisteredGateResponse } from '../../../domain/interfaces/responses/registeres-gate.response';
 import { BadRequestSwagger } from '../../../swagger/bad-request.swagger';
 import { IndexGateSwagger } from '../../../swagger/index-gate.swagger';
+import { TurbineData } from '../../external-api/data-turbine.external-api';
 import { ClosedGatePublisher } from '../../messaging/publisher/closed-gate.publisher';
 import { OpenedGatePublisher } from '../../messaging/publisher/opened-gate.publisher';
 import { RegisteredGatePublisher } from '../../messaging/publisher/registered-gate.publisher';
@@ -18,7 +20,6 @@ import { GetGateByIdCommand } from '../../utils/commands/get-gate-by-id.command'
 import { OpenGateCommand } from '../../utils/commands/open-gate.command';
 import { RegisterGateCommand } from '../../utils/commands/register-gate.command';
 import { JwtGuard } from '../../utils/guards/JwtGuard.guard';
-
 
 /**
  *
@@ -35,6 +36,7 @@ export class GateController {
     private readonly openedGatePublisher: OpenedGatePublisher,
     private readonly registeredGatePublisher: RegisteredGatePublisher,
     private readonly closedGatePublisher: ClosedGatePublisher,
+    private readonly httpService: HttpService,
   ) {}
 
   @Get(':id')
@@ -90,6 +92,9 @@ export class GateController {
   })
   @ApiResponse({ status: 404, description: 'La puerta no ha sido encontrada' })
   async openGates(@Param() id: OpenGateCommand): Promise<IOpenGateResponse> {
+    const dataTurbine = new TurbineData(this.httpService);
+    const res = await (await dataTurbine.dataTurbine()).data;
+    console.log(res);
     const useCase = new OpenGatesUseCase(
       this.gateService,
       this.openedGatePublisher,
@@ -117,7 +122,7 @@ export class GateController {
   ): Promise<boolean> {
     return this.gateService.changeStateGate(id.gateId, value.value);
   }
-  
+
   @Post('register')
   @ApiOperation({ summary: 'Se registra el item Gate' })
   @ApiResponse({
