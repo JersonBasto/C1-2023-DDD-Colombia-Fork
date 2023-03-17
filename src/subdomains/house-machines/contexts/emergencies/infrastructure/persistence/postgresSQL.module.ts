@@ -26,6 +26,7 @@ import { JwtGuard } from '../utils/guards/JwtGuard.guard';
 import { JwtService } from '@nestjs/jwt';
 import { RegisteredCloseGatePublisher } from '../messaging/publisher/registered-close-gate-action.publisher';
 import { AggregateRootExceptionFilter } from '../utils/exception-filters/agregate-root.exception-filter';
+import { InternalServerErrorExceptionFilter } from '../utils/exception-filters/data-base.exception-filter';
 
 @Module({
   imports: [
@@ -70,6 +71,10 @@ import { AggregateRootExceptionFilter } from '../utils/exception-filters/agregat
     {
       provide: APP_FILTER,
       useClass: AggregateRootExceptionFilter,
+    },
+    {
+      provide: APP_FILTER,
+      useClass: InternalServerErrorExceptionFilter,
     },
   ],
   exports: [
