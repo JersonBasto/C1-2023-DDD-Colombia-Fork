@@ -1,8 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Column, Entity, Index, JoinColumn, OneToMany } from 'typeorm';
+import { GateDomainEntity } from '../../../../domain/entities';
 import { CloseGateEntity } from '../close-gate-entity/close-gate.entity';
 import { OpenGateEntity } from '../open-gate-entity/open-gate.entity';
-
 
 /**
  *
@@ -13,7 +13,7 @@ import { OpenGateEntity } from '../open-gate-entity/open-gate.entity';
  */
 @Index('gate_primary_key', ['id'], { unique: true })
 @Entity('gate', { schema: 'public' })
-export class GateEntity {
+export class GateEntity extends GateDomainEntity{
   @Column('uuid', {
     primary: true,
     name: 'gate_id',
@@ -35,6 +35,12 @@ export class GateEntity {
   })
   @ApiProperty()
   emergency: boolean;
+
+  @Column('text', {
+    name: 'description'
+  })
+  @ApiProperty()
+  description?: string;
 
   @Column({
     type: 'timestamptz',

@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Column, Entity, Index, JoinColumn, ManyToOne } from 'typeorm';
+import { CloseGateDomainEntity } from '../../../../domain';
 import { GateEntity } from '../gate-entity/gate-entity.entity';
 
 /**
@@ -12,7 +13,7 @@ import { GateEntity } from '../gate-entity/gate-entity.entity';
 @Index('close_gate_date_key', ['date'])
 @Index('close_gate_primary_key', ['id'], { unique: true })
 @Entity('close_gate', { schema: 'public' })
-export class CloseGateEntity {
+export class CloseGateEntity extends CloseGateDomainEntity {
   @Column('uuid', {
     primary: true,
     name: 'close_gate_id',
@@ -21,8 +22,14 @@ export class CloseGateEntity {
   @ApiProperty()
   id?: string;
 
-  @Column('date', {
-    default: () => 'CURRENT_DATE',
+  @Column("text")
+  @ApiProperty()
+  description:string
+
+  @Column({
+    type: 'timestamptz',
+    name: 'emergency_date',
+    default: () => 'NOW()',
   })
   @ApiProperty()
   date?: Date | number;

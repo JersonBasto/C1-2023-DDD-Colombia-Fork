@@ -85,7 +85,8 @@ export class RegisterOpenGateActionUseCase
     //Create Entity
     const entity = new OpenGateDomainEntity();
     const gate = new GateDomainEntity({
-      gateId: command?.id,
+      gateId: command?.gatesOpen.id,
+      description:command?.gatesOpen.description
     });
     entity.gatesOpen = gate.valueOf();
     entity.id = openGateId.valueOf();

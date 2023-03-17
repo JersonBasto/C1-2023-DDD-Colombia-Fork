@@ -33,5 +33,6 @@ export class GateDomainEntity implements IGateDomainEntity {
     if (data?.emergencyDate) this.emergencyDate = data.emergencyDate;
     if (data?.openGate) this.openGate = data.openGate;
     if (data?.closeGate) this.closeGate = data.closeGate;
+    if (data?.description) this.description = data.description;
   }
 }

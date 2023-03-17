@@ -9,12 +9,16 @@ import {
   CloseGateDomainEntity,
   CloseGateIdValueObject,
   GateAggregateRoot,
+  GateDomainEntity,
   GateIdValueObject,
   ICloseGateDomainService,
+  RegisteredCloseActionEventPublisher,
   Topic,
 } from '../../../domain';
 import { IRegisterCloseActionCommand } from '../../../domain/interfaces/commands/register-close-action.command';
 import { IRegisteredCloseACtionResponse } from '../../../domain/interfaces/responses/registered-close-action.response';
+import { CloseGateDescriptionValueObject } from '../../../domain/value-objects/close-gate/close-date-description/close-gate-description.value-object';
+import { DescriptionValueObject } from '../../../domain/value-objects/gate/description/description.value-object';
 
 /**
  *
@@ -33,12 +37,16 @@ export class RegisterCloseGateActionUseCase
   private readonly gateAggregate: GateAggregateRoot;
   constructor(
     private readonly closeGateService: ICloseGateDomainService,
-    private readonly events: Map<Topic, EventPublisherBase<any>>,
+    private readonly registeredCloseActionEvent: RegisteredCloseActionEventPublisher,
   ) {
     super();
+    const events = new Map<Topic, EventPublisherBase<any>>();
     this.gateAggregate = new GateAggregateRoot({
       closeGateService,
-      events: (this.events = new Map<Topic, EventPublisherBase<any>>()),
+      events: events.set(
+        Topic.EmergenciesRegisteredCloseAction,
+        this.registeredCloseActionEvent,
+      ),
     });
   }
   /**
@@ -54,12 +62,22 @@ export class RegisterCloseGateActionUseCase
     const closeGateId = new CloseGateIdValueObject(command?.id);
     const closeDate = new CloseGateDateValueObject(command?.date);
     const gate = new GateIdValueObject(command?.gatesClose.id);
+    const description = new CloseGateDescriptionValueObject(
+      command?.description,
+    );
+    const descriptionGate = new DescriptionValueObject(
+      command?.gatesClose.description,
+    );
 
     //Captura de Errores
     if (closeGateId.hasErrors() === true)
       this.setErrors(closeGateId.getErrors());
     if (closeDate.hasErrors() === true) this.setErrors(closeDate.getErrors());
     if (gate.hasErrors() === true) this.setErrors(gate.getErrors());
+    if (description.hasErrors() === true)
+      this.setErrors(description.getErrors());
+    if (descriptionGate.hasErrors() === true)
+      this.setErrors(descriptionGate.getErrors());
 
     //Validar Errores
     if (this.hasErrors() === true) {
@@ -70,10 +88,15 @@ export class RegisterCloseGateActionUseCase
     }
 
     //Create Entity
+    const gateEntity = new GateDomainEntity({
+      gateId: command?.gatesClose.id,
+      description: command?.gatesClose.description,
+    });
     const entity = new CloseGateDomainEntity();
-    entity.gate = gate.valueOf();
     entity.id = closeGateId.valueOf();
     entity.date = closeDate.valueOf();
+    entity.description = description.valueOf();
+    entity.gatesClose = gateEntity;
 
     //Retornar
     const result = await this.gateAggregate.registerCloseAction(entity);

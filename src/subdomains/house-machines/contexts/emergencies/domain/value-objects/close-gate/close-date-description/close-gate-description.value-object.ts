@@ -9,7 +9,7 @@ import { IsUUID4 } from 'src/shared/validations/is-uuid-v4.validation';
  * @class GateIdValueObject
  * @extends {ValueObjectBase<string>}
  */
-export class OpenGateDescriptionValueObject extends ValueObjectBase<string> {
+export class CloseGateDescriptionValueObject extends ValueObjectBase<string> {
   constructor(value?: string) {
     super(value);
   }
@@ -18,7 +18,7 @@ export class OpenGateDescriptionValueObject extends ValueObjectBase<string> {
    *
    * Ejecuta las validaciones del dato
    *
-   * @memberof OpenGateDescriptionValueObject
+   * @memberof CloseGateDescriptionValueObject
    */
   validateData(): void {
     this.validateStructure();

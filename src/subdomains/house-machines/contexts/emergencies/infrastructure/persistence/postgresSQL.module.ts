@@ -22,6 +22,10 @@ import { RegisteredGatePublisher } from '../messaging/publisher/registered-gate.
 import { ClosedGatePublisher } from '../messaging/publisher/closed-gate.publisher';
 import { APP_FILTER } from '@nestjs/core';
 import { ObjectValueExceptionFilter } from '../utils/exception-filters/object-value.exception-filter';
+import { JwtGuard } from '../utils/guards/JwtGuard.guard';
+import { JwtService } from '@nestjs/jwt';
+import { RegisteredCloseGatePublisher } from '../messaging/publisher/registered-close-gate-action.publisher';
+import { AggregateRootExceptionFilter } from '../utils/exception-filters/agregate-root.exception-filter';
 
 @Module({
   imports: [
@@ -56,9 +60,16 @@ import { ObjectValueExceptionFilter } from '../utils/exception-filters/object-va
     OpenedGatePublisher,
     RegisteredGatePublisher,
     ClosedGatePublisher,
+    JwtGuard,
+    JwtService,
+    RegisteredCloseGatePublisher,
     {
       provide: APP_FILTER,
       useClass: ObjectValueExceptionFilter,
+    },
+    {
+      provide: APP_FILTER,
+      useClass: AggregateRootExceptionFilter,
     },
   ],
   exports: [

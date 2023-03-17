@@ -3,6 +3,7 @@ import { CloseGateIdValueObject } from '../value-objects/close-gate/close-gate-i
 import { ICloseGateDomainEntity } from './interfaces/close-gate.domain-entity.interface';
 import { v4 as uuid } from 'uuid';
 import { GateIdValueObject } from '../value-objects/gate/gate-id';
+import { GateDomainEntity } from './gate.domain-entity';
 
 /**
  *
@@ -16,12 +17,13 @@ import { GateIdValueObject } from '../value-objects/gate/gate-id';
 export class CloseGateDomainEntity implements ICloseGateDomainEntity {
   id?: string | CloseGateIdValueObject;
   date?: number | Date | CloseGateDateValueObject;
-  gate?: string | GateIdValueObject;
-  description?: string;
+  gatesClose: GateDomainEntity;
+  description: string;
+
   constructor(data?: CloseGateDomainEntity) {
     if (data?.id) this.id = data.id;
     else this.id = uuid();
     if (data?.date) this.date = data.date;
-    if (data?.gate) this.gate = data.gate;
+    if (data?.gatesClose) this.gatesClose = data.gatesClose;
   }
 }

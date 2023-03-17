@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UseGuards } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger/dist';
 import { OpenGatesUseCase } from '../../../application/use-cases';
 import { CloseGatesUseCase } from '../../../application/use-cases/close-gates/close-gates.use-case';
@@ -17,6 +17,7 @@ import { CloseGateCommand } from '../../utils/commands/close-gate.command';
 import { GetGateByIdCommand } from '../../utils/commands/get-gate-by-id.command';
 import { OpenGateCommand } from '../../utils/commands/open-gate.command';
 import { RegisterGateCommand } from '../../utils/commands/register-gate.command';
+import { JwtGuard } from '../../utils/guards/JwtGuard.guard';
 
 
 /**
@@ -35,6 +36,7 @@ export class GateController {
     private readonly registeredGatePublisher: RegisteredGatePublisher,
     private readonly closedGatePublisher: ClosedGatePublisher,
   ) {}
+
   @Get(':id')
   @ApiOperation({ summary: 'Se obtiene el item Gate a traves del Id' })
   @ApiResponse({
@@ -51,6 +53,7 @@ export class GateController {
   getGateById(@Param() id: GetGateByIdCommand): Promise<GateEntity> {
     return this.gateService.getGateById(id.id);
   }
+
   @Get('close-gates/:id')
   @ApiOperation({ summary: 'Cierra el item Gate con el id ingresado' })
   @ApiResponse({
@@ -72,6 +75,7 @@ export class GateController {
 
     return await useCase.execute(id);
   }
+
   @Get('open-gates/:id')
   @ApiOperation({ summary: 'Abre el item Gate con el id ingresado' })
   @ApiResponse({
@@ -92,7 +96,9 @@ export class GateController {
     );
     return await useCase.execute(id);
   }
+
   @Post('change-state-gate/:id')
+  @UseGuards(JwtGuard)
   @ApiOperation({ summary: 'Cambia el estado de Gate con el id ingresado' })
   @ApiResponse({
     status: 200,
@@ -111,6 +117,7 @@ export class GateController {
   ): Promise<boolean> {
     return this.gateService.changeStateGate(id.gateId, value.value);
   }
+  
   @Post('register')
   @ApiOperation({ summary: 'Se registra el item Gate' })
   @ApiResponse({
