@@ -1,4 +1,7 @@
-import { IErrorValueObject, ValueObjectBase } from '../../../../../../../../shared/sofka';
+import {
+  IErrorValueObject,
+  ValueObjectBase,
+} from '../../../../../../../../shared/sofka';
 import { IsDateNow } from '../../../../../../../../shared/validations';
 
 /**
@@ -10,7 +13,7 @@ import { IsDateNow } from '../../../../../../../../shared/validations';
  */
 export class CloseGateDateValueObject extends ValueObjectBase<Date | number> {
   constructor(value: Date | number | undefined) {
-    super(value);
+    super(value ? value : Date.now());
   }
 
   /**
