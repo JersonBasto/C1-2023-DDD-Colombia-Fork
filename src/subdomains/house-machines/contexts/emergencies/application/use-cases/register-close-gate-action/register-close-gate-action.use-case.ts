@@ -1,24 +1,21 @@
-import {
-  IUseCase,
-  ValueObjectErrorHandler,
-  ValueObjectException,
-} from 'src/shared/sofka';
-import { EventPublisherBase } from 'src/shared/sofka/event-publisher.base';
-import {
-  CloseGateDateValueObject,
-  CloseGateDomainEntity,
-  CloseGateIdValueObject,
-  GateAggregateRoot,
-  GateDomainEntity,
-  GateIdValueObject,
-  ICloseGateDomainService,
-  RegisteredCloseActionEventPublisher,
-  Topic,
-} from '../../../domain';
+import { ValueObjectErrorHandler } from '../../../../../../../shared/sofka/bases/value-object-error-handler.base';
 import { IRegisterCloseActionCommand } from '../../../domain/interfaces/commands/register-close-action.command';
+import { IUseCase } from '../../../../../../../../dist/shared/sofka/interface/use-case.interface';
 import { IRegisteredCloseACtionResponse } from '../../../domain/interfaces/responses/registered-close-action.response';
+import { GateAggregateRoot } from '../../../domain/aggregates/gate.aggregate';
+import { ICloseGateDomainService } from '../../../domain/services/close-gate.domain-service';
+import { RegisteredCloseActionEventPublisher } from '../../../domain/events/publishers/registered-close-action.event-publisher';
+import { Topic } from '../../../domain/events/enum/topic.enum';
+import { EventPublisherBase } from '../../../../../../../shared/sofka/event-publisher.base'
+import { CloseGateIdValueObject } from '../../../domain/value-objects/close-gate/close-gate-id/close-gate-id.value-object';
+import { CloseGateDateValueObject } from '../../../domain/value-objects/close-gate/close-date/close.date.value-object';
+import { GateIdValueObject } from '../../../domain/value-objects/gate/gate-id/gate-id.value-object';
 import { CloseGateDescriptionValueObject } from '../../../domain/value-objects/close-gate/close-date-description/close-gate-description.value-object';
 import { DescriptionValueObject } from '../../../domain/value-objects/gate/description/description.value-object';
+import { ValueObjectException } from '../../../../../../../shared/sofka/exceptions/object-value.exception';
+import { GateDomainEntity } from '../../../domain/entities/gate.domain-entity';
+import { CloseGateDomainEntity } from '../../../domain/entities/close-gate.domain-entity';
+
 
 /**
  *

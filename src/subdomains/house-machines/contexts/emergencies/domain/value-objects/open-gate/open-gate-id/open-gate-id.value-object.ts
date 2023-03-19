@@ -1,6 +1,7 @@
-import { IErrorValueObject, ValueObjectBase } from 'src/shared/sofka';
-import { IsUUID4 } from 'src/shared/validations/is-uuid-v4.validation';
 import { v4 as uuid } from 'uuid';
+import { ValueObjectBase } from '../../../../../../../../shared/sofka/bases/object-value.base';
+import { IErrorValueObject } from '../../../../../../../../../dist/shared/sofka/interface/error-object-value.interface';
+import { IsUUID4 } from '../../../../../../../../shared/validations/is-uuid-v4.validation';
 
 /**
  * Se valida el ID de openGate, en caso de no tener se asigna uno con uuid v4

@@ -1,18 +1,14 @@
-import {
-  IUseCase,
-  ValueObjectErrorHandler,
-  ValueObjectException,
-} from 'src/shared/sofka';
-import { EventPublisherBase } from 'src/shared/sofka/event-publisher.base';
-import {
-  GateAggregateRoot,
-  GotOpenGateByIdEventPublisher,
-  IOpenGateDomainService,
-  OpenGateIdValueObject,
-  Topic,
-} from '../../../domain';
+import { ValueObjectErrorHandler } from '../../../../../../../shared/sofka/bases/value-object-error-handler.base';
 import { IGetHistoryCloseActionCommand } from '../../../domain/interfaces/commands/get-history-close-action.command';
+import { IUseCase } from '../../../../../../../../dist/shared/sofka/interface/use-case.interface';
 import { IGotHistoryCloseActionResponse } from '../../../domain/interfaces/responses/got-history-close-action.response';
+import { GateAggregateRoot } from '../../../domain/aggregates/gate.aggregate';
+import { IOpenGateDomainService } from '../../../domain/services/open-gate.domain-service';
+import { GotOpenGateByIdEventPublisher } from '../../../domain/events/publishers/got-open-gate-by-id.event-publisher';
+import { Topic } from '../../../domain/events/enum/topic.enum';
+import { EventPublisherBase } from '../../../../../../../shared/sofka/event-publisher.base'
+import { ValueObjectException } from '../../../../../../../shared/sofka/exceptions/object-value.exception';
+
 
 /**
  *

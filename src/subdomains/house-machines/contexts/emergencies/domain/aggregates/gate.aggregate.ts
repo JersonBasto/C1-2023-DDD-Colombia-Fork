@@ -1,29 +1,25 @@
-import { EventPublisherBase } from 'src/shared/sofka/event-publisher.base';
-import {
-  CloseGateDomainEntity,
-  GateDomainEntity,
-  OpenGateDomainEntity,
-} from '../entities';
-import { Topic } from '../events';
-import {
-  ICloseGateDomainService,
-  IGateDomainService,
-  IOpenGateDomainService,
-} from '../services';
 import {
   ChangeStateEmergencyHelper,
   ChangeStateGateHelper,
+  CloseGateDomainEntity,
   CloseGateHelper,
+  GateDomainEntity,
   GetCloseGateByIdHelper,
   GetGateByIdHelper,
   GetHistoryCloseActionHelper,
   GetHistoryOpenActionHelper,
   GetOpenGateByIdHelper,
+  ICloseGateDomainService,
+  IGateDomainService,
+  IOpenGateDomainService,
+  OpenGateDomainEntity,
   OpenGateHelper,
   RegisterCloseActionHelper,
   RegisterOpenActionHelper,
-} from './helpers';
+  Topic,
+} from '../..';
 import { RegisterGateHelper } from './helpers/register-gate/register-gate.helper';
+import { EventPublisherBase } from '../../../../../../../src/shared/sofka/event-publisher.base';
 
 /**
  *
