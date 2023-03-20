@@ -1,6 +1,8 @@
-import { AggregateRootException } from 'src/shared/sofka';
-import { GotHistoryCloseActionEventPublisher } from '../../../events';
-import { ICloseGateDomainService } from '../../../services';
+import {
+  GotHistoryCloseActionEventPublisher,
+  ICloseGateDomainService,
+} from '../../..';
+import { AggregateRootException } from '../../../../../../../../shared/sofka/exceptions/aggregate-root.exception';
 
 /**
  * Es el Helper encargado de la logica para obtener todos los registros

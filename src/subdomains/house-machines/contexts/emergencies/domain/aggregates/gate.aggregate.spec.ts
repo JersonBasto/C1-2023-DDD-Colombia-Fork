@@ -1,8 +1,11 @@
-import { EventPublisherBase } from "../../../../../../../src/shared/sofka/event-publisher.base";
-import { Topic } from "../events";
-import { ICloseGateDomainService, IGateDomainService, IOpenGateDomainService } from "../services";
-import { GateAggregateRoot } from "./gate.aggregate";
-
+import { EventPublisherBase } from '../../../../../../../src/shared/sofka/event-publisher.base';
+import { Topic } from '../events';
+import {
+  ICloseGateDomainService,
+  IGateDomainService,
+  IOpenGateDomainService,
+} from '../services';
+import { GateAggregateRoot } from './gate.aggregate';
 
 jest.mock('./helpers');
 

@@ -1,23 +1,21 @@
-import {
-  IUseCase,
-  ValueObjectErrorHandler,
-  ValueObjectException,
-} from 'src/shared/sofka';
 import { EventPublisherBase } from 'src/shared/sofka/event-publisher.base';
 import {
   GateAggregateRoot,
   GateDomainEntity,
   GateIdValueObject,
   IOpenGateDomainService,
+  IRegisteredOpenACtionResponse,
+  IRegisterOpenActionCommand,
   OpenGateDateValueObject,
+  OpenGateDescriptionValueObject,
   OpenGateDomainEntity,
   OpenGateIdValueObject,
   RegisteredOpenedActionEventPublisher,
   Topic,
-} from '../../../domain';
-import { IRegisterOpenActionCommand } from '../../../domain/interfaces/commands/register-open-action.command';
-import { IRegisteredOpenACtionResponse } from '../../../domain/interfaces/responses/registered-open-action.response';
-import { OpenGateDescriptionValueObject } from '../../../domain/value-objects/open-gate/open-date-description/open-gate-description.value-object';
+} from '../../..';
+import { ValueObjectErrorHandler } from '../../../../../../../shared/sofka/bases/value-object-error-handler.base';
+import { IUseCase } from '../../../../../../../shared/sofka/interface/use-case.interface';
+import { ValueObjectException } from '../../../../../../../shared/sofka/exceptions/object-value.exception';
 
 /**
  *

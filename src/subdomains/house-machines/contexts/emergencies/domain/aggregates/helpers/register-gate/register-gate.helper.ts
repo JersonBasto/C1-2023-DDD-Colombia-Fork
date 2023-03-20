@@ -1,7 +1,6 @@
-import { AggregateRootException } from 'src/shared/sofka';
-import { GateDomainEntity } from '../../../entities';
+import { GateDomainEntity, IGateDomainService } from '../../..';
 import { RegisteredGateEventPublisher } from '../../../events/publishers/registered-gate.event-publisher';
-import { IGateDomainService } from '../../../services/gate.domain-service';
+import { AggregateRootException } from '../../../../../../../../shared/sofka/exceptions/aggregate-root.exception';
 
 /**
  *

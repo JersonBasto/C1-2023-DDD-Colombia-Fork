@@ -1,4 +1,4 @@
-import { EventPublisherBase } from 'src/shared/sofka/event-publisher.base';
+import { EventPublisherBase } from '../../../../../../../shared/sofka/event-publisher.base';
 import { OpenGateDomainEntity } from '../../entities/open-gate.domain-entity';
 import { Topic } from '../enum/topic.enum';
 

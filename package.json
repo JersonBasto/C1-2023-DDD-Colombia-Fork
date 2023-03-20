@@ -89,7 +89,8 @@
       "<rootDir>/app.module.ts",
       "<rootDir>/shared/sofka/*",
       "/index\\.ts$",
-      "<rootDir>/subdomains/house-machines/contexts/emergencies/infrastructure/*"
+      "<rootDir>/subdomains/house-machines/contexts/emergencies/infrastructure/*",
+      "<rootDir>/subdomains/house-machines/contexts/emergencies/swagger/*"
     ],
     "moduleDirectories": [
       "node_modules",

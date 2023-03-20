@@ -1,7 +1,6 @@
-import { EventPublisherBase } from 'src/shared/sofka/event-publisher.base';
-import { GateDomainEntity } from '../../entities';
-import { CloseGateDomainEntity } from '../../entities/close-gate.domain-entity';
+import { EventPublisherBase } from '../../../../../../../shared/sofka/event-publisher.base';
 import { Topic } from '../enum/topic.enum';
+import { GateDomainEntity } from '../../entities/gate.domain-entity';
 
 /**
  * Se crea el evento publicador, encargado de emitir la accion de

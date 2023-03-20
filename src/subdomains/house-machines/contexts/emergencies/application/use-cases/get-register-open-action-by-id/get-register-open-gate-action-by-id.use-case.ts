@@ -1,18 +1,17 @@
+import { EventPublisherBase } from '../../../../../../../shared/sofka/event-publisher.base';
+import { ValueObjectErrorHandler } from '../../../../../../../shared/sofka/bases/value-object-error-handler.base';
+import { IUseCase } from '../../../../../../../shared/sofka/interface/use-case.interface';
+import { IGotRegisterOpenGateActionReponse } from '../../../domain/interfaces/responses/got-open-gate-by-id.response';
+import { GateAggregateRoot } from '../../../domain/aggregates/gate.aggregate';
+import { GotOpenGateByIdEventPublisher } from '../../../domain/events/publishers/got-open-gate-by-id.event-publisher';
+import { Topic } from '../../../domain/events/enum/topic.enum';
 import {
-  IUseCase,
-  ValueObjectErrorHandler,
-  ValueObjectException,
-} from 'src/shared/sofka';
-import { EventPublisherBase } from 'src/shared/sofka/event-publisher.base';
-import {
-  GateAggregateRoot,
-  GotOpenGateByIdEventPublisher,
+  IGetRegisterOpenGateActionCommand,
   IOpenGateDomainService,
   OpenGateIdValueObject,
-  Topic,
-} from '../../../domain';
-import { IGetRegisterOpenGateActionCommand } from '../../../domain/interfaces/commands/get-open-gate-by-id.command';
-import { IGotRegisterOpenGateActionReponse } from '../../../domain/interfaces/responses/got-open-gate-by-id.response';
+} from '../../..';
+import { ValueObjectException } from '../../../../../../../shared/sofka/exceptions/object-value.exception';
+import { GotRegisterOpenGatePublisher } from '../../../infrastructure/messaging/publisher/got-register-open-action-by-id.publisher';
 
 /**
  *
@@ -35,7 +34,7 @@ export class GetRegisterOpenGateActionByIdUseCase
   private readonly gateAggregate: GateAggregateRoot;
   constructor(
     private readonly openGateService: IOpenGateDomainService,
-    private readonly gotOpenGateByIdEvent: GotOpenGateByIdEventPublisher,
+    private readonly gotRegisteredOpenGateAction: GotRegisterOpenGatePublisher,
   ) {
     super();
     const events = new Map<Topic, EventPublisherBase<any>>();
@@ -43,7 +42,7 @@ export class GetRegisterOpenGateActionByIdUseCase
       openGateService,
       events: events.set(
         Topic.EmergenciesGotOpenGateId,
-        this.gotOpenGateByIdEvent,
+        this.gotRegisteredOpenGateAction,
       ),
     });
   }

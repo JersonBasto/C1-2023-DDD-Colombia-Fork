@@ -1,16 +1,11 @@
-import {
-  IUseCase,
-  ValueObjectErrorHandler,
-  ValueObjectException,
-} from 'src/shared/sofka';
-import { EventPublisherBase } from 'src/shared/sofka/event-publisher.base';
-import {
-  ClosedGateEventPublisher,
-  GateIdValueObject,
-  IGateDomainService,
-  Topic,
-} from '../../../domain';
+import { ValueObjectErrorHandler } from '../../../../../../../shared/sofka/bases/value-object-error-handler.base';
+import { IUseCase } from '../../../../../../../shared/sofka/interface/use-case.interface';
 import { GateAggregateRoot } from '../../../domain/aggregates/gate.aggregate';
+import { ClosedGateEventPublisher, IGateDomainService } from '../../..';
+import { EventPublisherBase } from '../../../../../../../shared/sofka/event-publisher.base';
+import { Topic } from '../../../domain/events/enum/topic.enum';
+import { GateIdValueObject } from '../../../domain/value-objects/gate/gate-id/gate-id.value-object';
+import { ValueObjectException } from '../../../../../../../shared/sofka/exceptions/object-value.exception';
 import { ICloseGateCommand } from '../../../domain/interfaces/commands/close-gate.command';
 import { ICloseGateResponse } from '../../../domain/interfaces/responses/closed-gate.response';
 

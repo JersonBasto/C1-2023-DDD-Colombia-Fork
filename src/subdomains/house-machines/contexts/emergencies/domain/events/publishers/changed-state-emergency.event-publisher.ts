@@ -1,5 +1,5 @@
-import { EventPublisherBase } from 'src/shared/sofka/event-publisher.base';
 import { Topic } from '../enum/topic.enum';
+import { EventPublisherBase } from '../../../../../../../shared/sofka/event-publisher.base';
 
 /**
  * Se crea el evento publicador, encargado de emitir la accion de que

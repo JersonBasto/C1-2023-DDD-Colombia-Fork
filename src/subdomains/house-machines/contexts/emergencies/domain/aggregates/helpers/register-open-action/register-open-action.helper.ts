@@ -1,7 +1,9 @@
-import { AggregateRootException } from 'src/shared/sofka';
-import { OpenGateDomainEntity } from '../../../entities';
-import { RegisteredOpenedActionEventPublisher } from '../../../events';
-import { IOpenGateDomainService } from '../../../services';
+import {
+  IOpenGateDomainService,
+  OpenGateDomainEntity,
+  RegisteredOpenedActionEventPublisher,
+} from '../../..';
+import { AggregateRootException } from '../../../../../../../../shared/sofka/exceptions/aggregate-root.exception';
 
 /**
  *

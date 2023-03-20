@@ -1,7 +1,9 @@
-import { AggregateRootException } from 'src/shared/sofka';
-import { CloseGateDomainEntity } from '../../../entities';
-import { RegisteredCloseActionEventPublisher } from '../../../events';
-import { ICloseGateDomainService } from '../../../services';
+import {
+  CloseGateDomainEntity,
+  ICloseGateDomainService,
+  RegisteredCloseActionEventPublisher,
+} from '../../..';
+import { AggregateRootException } from '../../../../../../../../shared/sofka/exceptions/aggregate-root.exception';
 
 /**
  *

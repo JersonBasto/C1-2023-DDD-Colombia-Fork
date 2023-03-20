@@ -1,6 +1,6 @@
-import { AggregateRootException } from 'src/shared/sofka';
-import { GotGateByIdEventPublisher } from '../../../events';
-import { IGateDomainService } from '../../../services';
+import { GotGateByIdEventPublisher, IGateDomainService } from "../../..";
+import { AggregateRootException } from '../../../../../../../../shared/sofka/exceptions/aggregate-root.exception';
+
 
 /**
  *

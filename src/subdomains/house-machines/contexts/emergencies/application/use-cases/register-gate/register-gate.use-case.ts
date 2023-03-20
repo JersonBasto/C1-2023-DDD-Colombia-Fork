@@ -1,24 +1,19 @@
-import {
-  IUseCase,
-  ValueObjectErrorHandler,
-  ValueObjectException,
-} from 'src/shared/sofka';
-import { EventPublisherBase } from 'src/shared/sofka/event-publisher.base';
-import {
-  EmergencyDateValueObject,
-  EmergencyValueObject,
-  GateAggregateRoot,
-  GateDomainEntity,
-  IGateDomainService,
-  IOpenGateDomainService,
-  RegisteredOpenedActionEventPublisher,
-  StateGateValueObject,
-  Topic,
-} from '../../../domain';
+import { ValueObjectErrorHandler } from '../../../../../../../shared/sofka/bases/value-object-error-handler.base';
+import { IUseCase } from '../../../../../../../shared/sofka/interface/use-case.interface';
+import { GateAggregateRoot } from '../../../domain/aggregates/gate.aggregate';
 import { RegisteredGateEventPublisher } from '../../../domain/events/publishers/registered-gate.event-publisher';
-import { IRegisterGateCommand } from '../../../domain/interfaces/commands/register-gate.command';
+import { EventPublisherBase } from 'src/shared/sofka/event-publisher.base';
+import { Topic } from '../../../domain/events/enum/topic.enum';
+import {
+  DescriptionValueObject,
+  EmergencyValueObject,
+  IGateDomainService,
+  StateGateValueObject,
+} from '../../..';
+import { ValueObjectException } from '../../../../../../../shared/sofka/exceptions/object-value.exception';
+import { GateDomainEntity } from '../../../domain/entities/gate.domain-entity';
 import { IRegisteredGateResponse } from '../../../domain/interfaces/responses/registeres-gate.response';
-import { DescriptionValueObject } from '../../../domain/value-objects/gate/description/description.value-object';
+import { IRegisterGateCommand } from '../../../domain/interfaces/commands/register-gate.command';
 
 /**
  *
