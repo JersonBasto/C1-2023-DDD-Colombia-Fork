@@ -64,5 +64,20 @@ describe('changeStateEmergencyHelper', () => {
       //Assert
       expect(result).rejects.toThrow(AggregateRootException);
     });
+    it("change state emergecy", async () => {
+      //Arrange
+      const gate = new GateDomainEntity()
+      gate.gateId = uuid()
+      gate.description = "Se crea compuerta salida norte"
+      gate.emergency = false
+      gate.stateGate = false
+      gate.emergencyDate = Date.now()
+      gateService.changeStateEmergency = jest.fn().mockReturnValue(gate)
+      //Act
+      const result = await helper(true, gate.gateId, gateService, changedStateEmergencyEvent)
+      //Assert
+      gate.emergency = true
+      expect(result).toEqual(gate)
+    })
   });
 });
