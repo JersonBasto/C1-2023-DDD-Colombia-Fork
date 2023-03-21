@@ -1,7 +1,8 @@
-import { ValueObjectBase } from '../../../../../../../../shared/sofka/bases/object-value.base';
 import { IsDescriptionLength } from '../../../../../../../../shared/validations/is-description.validator';
-import { IErrorValueObject } from '../../../../../../../../../dist/shared/sofka/interface/error-object-value.interface';
-
+import {
+  IErrorValueObject,
+  ValueObjectBase,
+} from '../../../../../../../../shared/sofka';
 
 /**
  * Se valida el ID de Gate, en caso no tener uno se genera otro con uuid v4

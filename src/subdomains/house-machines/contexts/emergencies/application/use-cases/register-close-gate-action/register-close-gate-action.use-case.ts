@@ -1,6 +1,5 @@
 import { ValueObjectErrorHandler } from '../../../../../../../shared/sofka/bases/value-object-error-handler.base';
 import { IRegisterCloseActionCommand } from '../../../domain/interfaces/commands/register-close-action.command';
-import { IUseCase } from '../../../../../../../../dist/shared/sofka/interface/use-case.interface';
 import { IRegisteredCloseACtionResponse } from '../../../domain/interfaces/responses/registered-close-action.response';
 import { GateAggregateRoot } from '../../../domain/aggregates/gate.aggregate';
 import { ICloseGateDomainService } from '../../../domain/services/close-gate.domain-service';
@@ -15,6 +14,7 @@ import { DescriptionValueObject } from '../../../domain/value-objects/gate/descr
 import { ValueObjectException } from '../../../../../../../shared/sofka/exceptions/object-value.exception';
 import { GateDomainEntity } from '../../../domain/entities/gate.domain-entity';
 import { CloseGateDomainEntity } from '../../../domain/entities/close-gate.domain-entity';
+import { IUseCase } from 'src/shared/sofka';
 
 
 /**

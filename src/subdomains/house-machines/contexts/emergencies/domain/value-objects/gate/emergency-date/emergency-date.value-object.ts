@@ -1,7 +1,8 @@
-import { ValueObjectBase } from '../../../../../../../../shared/sofka/bases/object-value.base';
 import { IsDateNow } from '../../../../../../../../shared/validations/is-date-now.validation';
-import { IErrorValueObject } from '../../../../../../../../../dist/shared/sofka/interface/error-object-value.interface';
-
+import {
+  IErrorValueObject,
+  ValueObjectBase,
+} from '../../../../../../../../shared/sofka';
 /**
  * Se valida la fecha de Emergencia y que cumpla las condiciones
  *

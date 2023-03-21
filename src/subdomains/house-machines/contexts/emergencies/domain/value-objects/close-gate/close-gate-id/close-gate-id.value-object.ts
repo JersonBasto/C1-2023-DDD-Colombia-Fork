@@ -1,7 +1,10 @@
 import { v4 as uuid } from 'uuid';
-import { ValueObjectBase } from '../../../../../../../../shared/sofka/bases/object-value.base';
 import { IsUUID4 } from '../../../../../../../../shared/validations/is-uuid-v4.validation';
-import { IErrorValueObject } from '../../../../../../../../../dist/shared/sofka/interface/error-object-value.interface';
+import {
+  IErrorValueObject,
+  ValueObjectBase,
+} from '../../../../../../../../shared/sofka';
+
 
 /**
  * Se crea la validacion para el id de closeGate, en caso de no existir se asigna uno

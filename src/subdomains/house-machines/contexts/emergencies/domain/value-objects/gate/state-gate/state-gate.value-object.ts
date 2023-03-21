@@ -1,6 +1,8 @@
-import { ValueObjectBase } from '../../../../../../../../shared/sofka/bases/object-value.base';
 import { IsBoolean } from '../../../../../../../../shared/validations/is-boolean.validator';
-import { IErrorValueObject } from '../../../../../../../../../dist/shared/sofka/interface/error-object-value.interface';
+import {
+  IErrorValueObject,
+  ValueObjectBase,
+} from '../../../../../../../../shared/sofka';
 
 /**
  * Se valida  que la variable contenga un booleano

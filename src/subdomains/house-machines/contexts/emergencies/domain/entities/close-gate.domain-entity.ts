@@ -2,7 +2,6 @@ import { CloseGateDateValueObject } from '../value-objects/close-gate/close-date
 import { CloseGateIdValueObject } from '../value-objects/close-gate/close-gate-id/close-gate-id.value-object';
 import { ICloseGateDomainEntity } from './interfaces/close-gate.domain-entity.interface';
 import { v4 as uuid } from 'uuid';
-import { GateIdValueObject } from '../value-objects/gate/gate-id';
 import { GateDomainEntity } from './gate.domain-entity';
 
 /**
