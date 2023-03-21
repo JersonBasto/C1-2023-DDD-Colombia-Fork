@@ -4,6 +4,8 @@ import { GateDomainEntity } from '../../../entities/gate.domain-entity';
 import { v4 as uuid } from 'uuid';
 import { AggregateRootException } from '../../../../../../../../shared/sofka/exceptions/aggregate-root.exception';
 import { ChangedStateGateEventPublisher } from '../../../events';
+import { ChangeStateEmergencyHelper } from '../change-state-emergency';
+import { ChangeStateGateHelper } from './change-state-gate.helper';
 
 describe('changeStateEmergencyHelper', () => {
   let value: boolean;
@@ -13,30 +15,18 @@ describe('changeStateEmergencyHelper', () => {
   beforeEach(() => {
     value = true;
     gateService = {
-      changeStateEmergency: jest.fn(),
+      changeStateGate: jest.fn(),
     } as unknown as IGateDomainService;
     changedStateGateEvent = {
       publish: jest.fn(),
       response: new GateDomainEntity(),
     } as unknown as ChangedStateGateEventPublisher;
-    helper = changedStateGateEvent;
+    helper =  ChangeStateGateHelper;
   });
   it('Should be defined', () => {
     expect(helper).toBeDefined();
   });
   describe('Validations', () => {
-    it('prueba', () => {
-      value = true;
-      gateService = {
-        changeStateEmergency: jest.fn(),
-      } as unknown as IGateDomainService;
-      changedStateGateEvent = {
-        response: true,
-        publish: jest.fn(),
-      } as unknown as ChangedStateGateEventPublisher;
-      helper = changedStateGateEvent;
-      expect(changedStateGateEvent.response).toBe(true || false);
-    });
     it('No service', () => {
       //Arrange
       gateService = undefined as unknown as IGateDomainService;
@@ -64,7 +54,7 @@ describe('changeStateEmergencyHelper', () => {
       //Assert
       expect(result).rejects.toThrow(AggregateRootException);
     });
-    it("change state emergecy", async () => {
+    it("change state Gate", async () => {
       //Arrange
       const gate = new GateDomainEntity()
       gate.gateId = uuid()
@@ -72,7 +62,7 @@ describe('changeStateEmergencyHelper', () => {
       gate.emergency = false
       gate.stateGate = false
       gate.emergencyDate = Date.now()
-      gateService.changeStateEmergency = jest.fn().mockReturnValue(gate)
+      gateService.changeStateGate = jest.fn().mockReturnValue(gate)
       //Act
       const result = await helper(true, gate.gateId, gateService, changedStateGateEvent)
       //Assert
