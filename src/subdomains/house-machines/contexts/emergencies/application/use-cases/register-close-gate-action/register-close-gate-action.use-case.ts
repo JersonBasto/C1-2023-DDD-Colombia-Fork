@@ -5,7 +5,7 @@ import { GateAggregateRoot } from '../../../domain/aggregates/gate.aggregate';
 import { ICloseGateDomainService } from '../../../domain/services/close-gate.domain-service';
 import { RegisteredCloseActionEventPublisher } from '../../../domain/events/publishers/registered-close-action.event-publisher';
 import { Topic } from '../../../domain/events/enum/topic.enum';
-import { EventPublisherBase } from '../../../../../../../shared/sofka/event-publisher.base'
+import { EventPublisherBase } from '../../../../../../../shared/sofka/event-publisher.base';
 import { CloseGateIdValueObject } from '../../../domain/value-objects/close-gate/close-gate-id/close-gate-id.value-object';
 import { CloseGateDateValueObject } from '../../../domain/value-objects/close-gate/close-date/close.date.value-object';
 import { GateIdValueObject } from '../../../domain/value-objects/gate/gate-id/gate-id.value-object';
@@ -15,7 +15,6 @@ import { ValueObjectException } from '../../../../../../../shared/sofka/exceptio
 import { GateDomainEntity } from '../../../domain/entities/gate.domain-entity';
 import { CloseGateDomainEntity } from '../../../domain/entities/close-gate.domain-entity';
 import { IUseCase } from 'src/shared/sofka';
-
 
 /**
  *
@@ -94,7 +93,6 @@ export class RegisterCloseGateActionUseCase
     entity.date = closeDate.valueOf();
     entity.description = description.valueOf();
     entity.gatesClose = gateEntity;
-
     //Retornar
     const result = await this.gateAggregate.registerCloseAction(entity);
     return { state: true, message: 'Se registrado la accion', data: result };

@@ -13,7 +13,7 @@ import { IsDateNow } from '../../../../../../../../shared/validations';
  */
 export class CloseGateDateValueObject extends ValueObjectBase<Date | number> {
   constructor(value: Date | number | undefined) {
-    super(value ? value : Date.now());
+    super(value);
   }
 
   /**
