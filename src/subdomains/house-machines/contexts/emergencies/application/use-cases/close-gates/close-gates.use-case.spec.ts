@@ -2,7 +2,6 @@ import { IGateDomainService } from '../../..';
 import { ClosedGateEventPublisher } from '../../../domain/events/publishers/closed-gate.event-publisher';
 import { GateAggregateRoot } from '../../../domain/aggregates/gate.aggregate';
 import { CloseGatesUseCase } from './close-gates.use-case';
-import { GateDomainEntity } from '../../../domain/entities/gate.domain-entity';
 import { IOpenGateCommand } from '../../../../../../../../dist/subdomains/house-machines/contexts/emergencies/domain/interfaces/commands/open-gate.command';
 import { ICloseGateResponse } from '../../../domain/interfaces/responses/closed-gate.response';
 import { ValueObjectException } from '../../../../../../../shared/sofka/exceptions/object-value.exception';

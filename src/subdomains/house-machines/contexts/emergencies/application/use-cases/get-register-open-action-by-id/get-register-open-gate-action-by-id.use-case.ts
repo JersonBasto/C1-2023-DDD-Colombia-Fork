@@ -3,7 +3,6 @@ import { ValueObjectErrorHandler } from '../../../../../../../shared/sofka/bases
 import { IUseCase } from '../../../../../../../shared/sofka/interface/use-case.interface';
 import { IGotRegisterOpenGateActionReponse } from '../../../domain/interfaces/responses/got-open-gate-by-id.response';
 import { GateAggregateRoot } from '../../../domain/aggregates/gate.aggregate';
-import { GotOpenGateByIdEventPublisher } from '../../../domain/events/publishers/got-open-gate-by-id.event-publisher';
 import { Topic } from '../../../domain/events/enum/topic.enum';
 import {
   IGetRegisterOpenGateActionCommand,

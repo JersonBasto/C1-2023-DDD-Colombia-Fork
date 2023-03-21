@@ -1,14 +1,14 @@
 import { ValueObjectErrorHandler } from '../../../../../../../shared/sofka/bases/value-object-error-handler.base';
-import { IGetHistoryCloseActionCommand } from '../../../domain/interfaces/commands/get-history-close-action.command';
-import { IUseCase } from '../../../../../../../../dist/shared/sofka/interface/use-case.interface';
-import { IGotHistoryCloseActionResponse } from '../../../domain/interfaces/responses/got-history-close-action.response';
 import { GateAggregateRoot } from '../../../domain/aggregates/gate.aggregate';
-import { IOpenGateDomainService } from '../../../domain/services/open-gate.domain-service';
-import { GotOpenGateByIdEventPublisher } from '../../../domain/events/publishers/got-open-gate-by-id.event-publisher';
 import { Topic } from '../../../domain/events/enum/topic.enum';
-import { EventPublisherBase } from '../../../../../../../shared/sofka/event-publisher.base'
+import { EventPublisherBase } from '../../../../../../../shared/sofka/event-publisher.base';
 import { ValueObjectException } from '../../../../../../../shared/sofka/exceptions/object-value.exception';
-
+import { ICloseGateDomainService } from '../../../domain/services/close-gate.domain-service';
+import { IUseCase } from '../../../../../../../shared/sofka/interface/use-case.interface';
+import { CloseGateIdValueObject } from '../../../domain/value-objects/close-gate/close-gate-id/close-gate-id.value-object';
+import { IGetRegisterCloseGateActionCommand } from '../../../domain/interfaces/commands/get-close-gate-by-id.command';
+import { IGotRegisterCloseGateActionReponse } from '../../../domain/interfaces/responses/got-close-gate-by-id.response';
+import { GotCloseGateByIdEventPublisher } from '../../../domain';
 
 /**
  *
@@ -22,18 +22,24 @@ import { ValueObjectException } from '../../../../../../../shared/sofka/exceptio
 export class GetRegisterCloseGateActionUseCase
   extends ValueObjectErrorHandler
   implements
-    IUseCase<IGetHistoryCloseActionCommand, IGotHistoryCloseActionResponse>
+    IUseCase<
+      IGetRegisterCloseGateActionCommand,
+      IGotRegisterCloseGateActionReponse
+    >
 {
   private readonly gateAggregate: GateAggregateRoot;
   constructor(
-    private readonly openGateService: IOpenGateDomainService,
-    private readonly gotOpenGateByIdEvent: GotOpenGateByIdEventPublisher,
-    private readonly events?: Map<Topic, EventPublisherBase<any>>,
+    private readonly closeGateService: ICloseGateDomainService,
+    private readonly gotCloseGateByIdEvent: GotCloseGateByIdEventPublisher,
   ) {
     super();
+    const events = new Map<Topic, EventPublisherBase<any>>();
     this.gateAggregate = new GateAggregateRoot({
-      openGateService,
-      events: (this.events = new Map<Topic, EventPublisherBase<any>>()),
+      closeGateService,
+      events: events.set(
+        Topic.EmergenciesGotCloseGateById,
+        this.gotCloseGateByIdEvent,
+      ),
     });
   }
   /**
@@ -45,10 +51,12 @@ export class GetRegisterCloseGateActionUseCase
       data: answer,
    */
   async execute(
-    command?: IGetHistoryCloseActionCommand | undefined,
-  ): Promise<IGotHistoryCloseActionResponse> {
+    command?: IGetRegisterCloseGateActionCommand | undefined,
+  ): Promise<IGotRegisterCloseGateActionReponse> {
     //Validaciones
+    const closeGateId = new CloseGateIdValueObject(command?.id);
     //Captura de Errores
+    if (closeGateId.hasErrors()) this.setErrors(closeGateId.getErrors());
     //Validar Errores
     if (this.hasErrors() === true) {
       throw new ValueObjectException(
@@ -57,7 +65,9 @@ export class GetRegisterCloseGateActionUseCase
       );
     }
 
-    const answer = await this.gateAggregate.getHistoryCloseAction();
+    const answer = await this.gateAggregate.getCloseGateById(
+      closeGateId.valueOf(),
+    );
 
     return {
       state: true,

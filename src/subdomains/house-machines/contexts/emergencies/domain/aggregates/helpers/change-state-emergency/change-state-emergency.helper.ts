@@ -1,4 +1,7 @@
-import { ChangedStateEmergencyEventPusblisher, IGateDomainService } from "../../..";
+import {
+  ChangedStateEmergencyEventPusblisher,
+  IGateDomainService,
+} from '../../..';
 import { AggregateRootException } from '../../../../../../../../shared/sofka/exceptions/aggregate-root.exception';
 
 /**
